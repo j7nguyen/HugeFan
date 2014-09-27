@@ -1,8 +1,5 @@
 source 'https://rubygems.org'
 
-
-gem "figaro"
-
 gem 'pg'
 group :development do
   gem 'better_errors'
