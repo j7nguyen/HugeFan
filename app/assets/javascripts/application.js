@@ -48,11 +48,11 @@ function main() {
 
 function setUpCategoryAutofill() {
 	var categoryBox = $('#category-suggestion-container');
-	categoryBox.append('<ul id="category-suggestions">');
-	for (var key in APP.categories) {
-		categoryBox.append($('<li>' + APP.categories[key].email + '</li>'));
-	}	
-	categoryBox.append('</ul>');
+	// categoryBox.append('<ul id="category-suggestions">');
+	// for (var key in APP.categories) {
+	// 	categoryBox.append($('<li>' + APP.categories[key].email + '</li>'));
+	// }	
+	// categoryBox.append('</ul>');
 	categoryBox.hide();
 	$('#category').focus(function(){categoryBox.show()});
 	$('#category').blur(function() {categoryBox.hide()})
