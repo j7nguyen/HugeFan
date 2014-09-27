@@ -14,10 +14,6 @@
  *= require_self
  */
 
-@-ms-viewport{
-  width: device-width;
-  height: device-height;
-}
  
 body {
 	width: 100%;
@@ -95,7 +91,6 @@ header {
 #infoBox {
 	width: 100;
 	border-top: thin solid #DCDBDD;
-	/*border-bottom: 1px solid black;*/
 	font-size: .9em;
 	color: #B9B9BC;
 }
@@ -123,6 +118,7 @@ header {
 	}
 
 
+
 		#category {
 			background-color:transparent;
 			border:0px solid white;
@@ -131,6 +127,7 @@ header {
 			outline: none;
 			color: #000;
 		}
+
 
 		#category-suggestion-container {
 
@@ -142,6 +139,7 @@ header {
 			border-top: 1px solid #ccc;
 			padding: 2px 0px;
 			margin: 0;
+
 
 		}
 
@@ -186,18 +184,16 @@ header {
 
 	}
 
-#body {
-
-}
 
 #body textarea {
+
 
 	height: 415px;
 	width: 93%;
 	border-radius: 0px;
 	overflow: visible;
-	padding: 7px 11px;
-	font-size: .8em;
+	padding: 10px 1px;
+	font-size: .9em;
 	border:none;
 	box-shadow: none;
 	outline: none;
