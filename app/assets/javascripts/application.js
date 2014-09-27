@@ -78,7 +78,7 @@ function setUpCategoryAutofill() {
 
 	// disable typing in keys in To: field (user's should use drop down)
 	$(APP.categoryID).keypress(function() {return false});
-	$(APP.categoryID).attr('placeholder', 'put category here')
+	$(APP.categoryID).attr('placeholder', 'Put category here')
 	
 	// show category box on focus / unfocus
 	$(APP.categoryID).focus(function(){
@@ -113,14 +113,14 @@ function displayMoreQuery(e) {
 }
 
 function getResult() {
-	$(APP.resultsID).attr('placeholder', 'start typing here to see result');
+	$(APP.resultsID).attr('placeholder', 'Start typing here to see result.');
 	$(APP.resultsID).val('');
 
 	var category = APP.selectedCategory;
 	var query = $('#subject-input').val();
 
 	if (!category || query == '') {
-		$(APP.resultsID).attr('placeholder', 'please fill both to and subject fields, then click here');
+		$(APP.resultsID).attr('placeholder', 'Please fill both to and subject fields, then click here.');
 	} else {
 		// fill in ajax request here
 		var result = APP.tempFillerText	
