@@ -260,16 +260,19 @@ function getResult() {
 	if (!category || query == '') {
 		$(APP.resultsID).attr('placeholder', 
 			'Please fill both the to and subject fields out, then click here.');
-		setTimeout(function(){
-			$(APP.resultsID).animate(
-				{opacity: 0}, 
-				700, 
-				function() {
-				    // Animation complete.
-				    $(APP.resultsID).attr('placeholder', '');
-				    $(APP.resultsID).animate({opacity: 1}, 500);
-				});
-		}, 3000);
+
+		setTimeout(
+			function(){
+				$(APP.resultsID).animate(
+					{opacity: 0}, 
+					700, 
+					function() {
+					    $(APP.resultsID).attr('placeholder', '');
+					    $(APP.resultsID).animate({opacity: 1}, 500);
+					});
+				}, 
+			3000
+		);
 
 	} else {
 
