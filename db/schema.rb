@@ -11,10 +11,25 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140927041719) do
+ActiveRecord::Schema.define(version: 20140927195624) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "movies", force: true do |t|
+    t.string   "title"
+    t.string   "year"
+    t.string   "score"
+    t.string   "actor_one"
+    t.string   "actor_two"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "character_one"
+    t.string   "character_two"
+    t.string   "critics_concensus"
+    t.string   "director"
+    t.string   "genre"
+  end
 
   create_table "topics", force: true do |t|
     t.string   "title",      null: false

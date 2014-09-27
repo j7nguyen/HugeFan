@@ -7,7 +7,7 @@ module Api
 
         def initialize(topic)
             @topic = topic
-            @api_file = 'api.keys'
+            @api_file = 'lib/api.keys'
             load_api_keys()
         end
 
@@ -36,13 +36,23 @@ module Api
             end
         end
 
+        def get_info
+            movie_id = search(@topic)
+            if movie_id
+              info(movie_id)
+            else
+              return "BULLSHIT BRO"
+            end
+        end
+
     private
 
         def info(movie_id) #must be a valid movie_id! there are no checks!
             url = @@info_url % [movie_id, @apiKey["rtapi"]]
             resp = Net::HTTP.get_response(URI.parse(url))
             result = JSON.parse(resp.body)
-            return result["synopsis"]
+            # return result["synopsis"]
+            return result
         end
 
         def search(movie)
