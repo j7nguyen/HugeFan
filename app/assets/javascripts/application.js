@@ -39,8 +39,13 @@ var APP = {
 }
 
 function main() {
+	setUpGreeting();
 	setUpCategoryAutofill();
 	setUpResultsBox();
+}
+
+function setUpGreeting() {
+
 }
 
 function setUpCategoryAutofill() {
@@ -110,11 +115,10 @@ function getResult() {
 		$(APP.resultsID).attr('placeholder', 'please fill both to and subject fields, then click here');
 	} else {
 		// fill in ajax request here
-		var result = APP.tempFillerText		
+		var result = APP.tempFillerText	
+		APP.wordIndex = 0;
+		APP.resultWords = result.split(' ');	
 	}
-
-	APP.wordIndex = 0;
-	APP.resultWords = result.split(' ');
 }
 
 $(document).ready(main);
