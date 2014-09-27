@@ -1,7 +1,8 @@
 source 'https://rubygems.org'
 
 
-gem 'annotate'
+gem "figaro"
+
 gem 'pg'
 group :development do
   gem 'better_errors'

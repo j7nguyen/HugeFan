@@ -11,14 +11,14 @@ class TopicsController < ApplicationController
       @rtapi = Api::RTApi.new("Mission Impossible")
       @summary = @rtapi.get_summary()
       fail
-    elsif topic == "Sports"
+    elsif params[:topic] == "Sports"
       @summary = "Some sports shit"
     end
   end
   
   def show
     @topic = Topic.find_by_title(params[:topic])
-    if params[:topic] == "Movies"
+    if params[:topic] == "  Movies"
       @rtapi = Api::RTApi.new(query)
       @summary = rtapi.get_summary()
       @summary
@@ -34,3 +34,4 @@ class TopicsController < ApplicationController
   end
   
 end
+
