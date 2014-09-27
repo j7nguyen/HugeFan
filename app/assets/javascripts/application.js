@@ -45,7 +45,15 @@ function main() {
 }
 
 function setUpGreeting() {
-
+	var time = new Date();
+	var currentHour = time.getHours();
+	if (currentHour < 5 || currentHour > 17) {
+		$('#greeting').text('Good Evening');
+	} else if (currentHour < 12) {
+		$('#greeting').text('Good Morning');
+	} else {
+		$('#greeting').text('Good Afternoon');
+	}
 }
 
 function setUpCategoryAutofill() {
