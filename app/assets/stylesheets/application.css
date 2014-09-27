@@ -15,18 +15,39 @@
  */
 
 body {
+	font-family: Arial, Helvetica, sans-serif;
   	padding: 5px;
   	background-color: #fff;
   }
   
-  header {
-  	background-color: #ededed;
-  	padding:8px;
-  	width: 100%;
+  #topBack {
+  	background-color: #000;
   	position: fixed;
   	top:0px;
   	left: 0px;
+  	width: 100%;
+  	height: 20px
+  }
+
+    #topBlock {
+  	background-color: #B7B7B7;
+  	position: fixed;
+  	top:7px;
+  	left: 5%;
+  	width: 90%;
+  	height: 20px;
+  	margin: 0 auto;
+  }
+
+  header {
+  	background-color: #F5F5F5;
+  	padding:8px;
+  	width: 100%;
+  	position: fixed;
+  	top:15px;
+  	left: 0px;
   	border-bottom: 1px solid #bbb;
+  	font-size: 1.1em;
   }
   
   header div {
@@ -38,30 +59,37 @@ body {
   }
 
   .infoBox {
-  	border-top: 1px solid black;
+  	border-top: thin solid #DCDBDD;
   	/*border-bottom: 1px solid black;*/
-  	padding: 5px;
+  	padding:10px 0px;
+  	font-size: .9em;
+  	color: #B9B9BC;
   }
 
   #to {
-  	margin-top: 34px;
+  	margin-top: 49px;
   	border-top: none;
   }
 
+  #ccBccFrom {
 
+  }
 
   #info {
-
+  	color: #C5C5C5;
   }
 
   #title {
   	font-weight: bold;
-  	margin-left:24%;
+  	position: absolute;
+  	left:31%;
+  	/*margin-left:24%;*/
   }
 
   #send {
   	float: right;
   	margin-right: 15px;
+  	color: #4B8AEC;
   }
 
   #keyboard {
@@ -71,5 +99,4 @@ body {
   	background-color: #ccc;
   	height: 300px;
   	width: 100%;
-  	display: none;
   }
