@@ -13,159 +13,192 @@
  *= require_tree .
  *= require_self
  */
+
  
 body {
 	width: 100%;
 	font-family: Arial, Helvetica, sans-serif;
 	font-size: 1em;
-	padding: 5px;
+	padding: 0;
 	background-color: #fff;
 }
 
-#topBack {
-	background-color: #000;
-	position: fixed;
-	top:0px;
-	left: 0px;
+#wrapper {
 	width: 100%;
-	height: 20px
-}
-
-#topBlock {
-	background-color: #B7B7B7;
-	position: fixed;
-	top:7px;
-	left: 5%;
-	width: 90%;
-	height: 20px;
-	margin: 0 auto;
 }
 
 header {
-	background-color: #F5F5F5;
-	padding:8px;
-	width: 100%;
 	position: fixed;
-	top:15px;
+	padding:0;
+	width: 100%;
 	left: 0px;
-	border-bottom: 1px solid #bbb;
+	top: 0px;
 	font-size: 1.1em;
 }
 
-header div {
+
+#topBack {
+	background-color: #000;
+	z-index: 0;
+	width: 100%;
+	height: 20px;
+	padding-top:10px;
+}
+
+
+#topBlock {
+	background-color: #B7B7B7;
+	z-index: 0;
+	width: 90%;
+	height: 10px;
+	margin: 0 auto;
+
+}
+
+#infoBar {
+	z-index: 2;
+	position: relative;
+	top: -10px;
+	height: 2em;
+	padding: 0 5px;
+	line-height: 2em;
+	z-index: 9999999;
+	background-color: #F3F2F3;
+	border-bottom: 1px solid #bbb;
+	border-top: 1px solid #bbb;
+}
+
+#infoBar div {
 	display: inline-block;
 }
 
-#wrapper {
-	position: fixed;
-	width: 98%;
-}
+	#info {
+		color: #C5C5C5;
+	}
 
-.infoBox {
-	width: 98%;
+	#title {
+		position: relative;
+		font-weight: bold;
+		left:13%;
+	}
+
+	#send {
+		float: right;
+		margin-right: 15px;
+		color: #4B8AEC;
+	}
+
+#infoBox {
+	width: 100;
 	border-top: thin solid #DCDBDD;
-	/* border-bottom: 1px solid black; */
-	padding:10px 0px;
 	font-size: .9em;
 	color: #B9B9BC;
 }
 
-#to {
-	margin-top: 49px;
-	border-top: none;
+#infoBox > div {
+	padding:0 0 0 10px;
 }
 
+	#to, #ccBccFrom, #subject {
+		border-top: thin solid #DCDBDD;
+		/*border-bottom: 1px solid black;*/
+		padding: 5px 0;
+		font-size: .9em;
+		color: #B9B9BC;
+	}
 
-#category {
-	background-color:transparent;
-	border:0px solid white;
-}
+	#to {
+		margin-top: 59px;
+		border-top: none;
+	}
+
+	#to input {
+		width: 80%;
+		border-radius: 0px;
+	}
 
 
-#info {
-	color: #C5C5C5;
-}
 
-#title {
-	font-weight: bold;
-	position: absolute;
-	left:31%;
-	/* margin-left:24%; */
-}
+		#category {
+			background-color:transparent;
+			border:0px solid white;
+			margin-left: 5px;
+			border:none;
+			outline: none;
+			color: #000;
+		}
 
-#send {
-	float: right;
-	margin-right: 15px;
-	color: #4B8AEC;
-}
+
+		#category-suggestion-container {
+
+			position: absolute;
+			width: 100%;
+			top: 88px;
+			left: 0;
+			background-color: #fff;
+			border-top: 1px solid #ccc;
+			padding: 2px 0px;
+			margin: 0;
+
+
+		}
+
+		#category-suggestions {
+			padding: 0px 10px;
+			margin: 0px;
+		}
+
+		.subContact {
+			font-size: .9em;
+		}
+
+		
+
+		#category-suggestion-container li {
+
+			list-style-type: none;
+			line-height: 20px;
+			border-bottom: 1px solid #ccc;
+			padding:5px 0;
+			height: 39px;
+
+		}
+
+
+	#ccBccFrom {
+		padding: 8px 0;
+	}
+
+	#subject {
+		border-bottom: thin solid #DCDBDD;
+	}
+
+	#subject input {
+
+		margin-left: 5px;
+		border:none;
+		outline: none;
+		color: #000;
+		width: 75%;
+		border-radius: 0px;
+
+	}
+
 
 #body textarea {
 
-	width: 95%;
-	height: 1000px;
-	padding: 5px 15px;
-	border:none;
-	box-shadow: none;
-	outline: none;
-	resize: none;
-	color: #000;
-}
 
-#body textarea:focus {
-
-	border:none;
-	box-shadow: none;
-	outline: none;
-	resize: none;
-
-}
-
-#subject input {
-
-	margin-left: 5px;
-	border:none;
-	outline: none;
-	color: #000;
-}
-
-#category {
-
-	margin-left: 5px;
-	border:none;
-	outline: none;
-	color: #000;
-}
-
-#category-suggestions {
-	padding: 0px 10px;
-	margin: 0px;
-}
-
-.subContact {
+	height: 415px;
+	width: 93%;
+	border-radius: 0px;
+	overflow: visible;
+	padding: 10px 1px;
 	font-size: .9em;
-}
+	border:none;
+	box-shadow: none;
+	outline: none;
+	resize: none;
+	color: #000;
 
-#category-suggestion-container {
-
-	position: absolute;
-	width: 100%;
-	top: 87px;
-	background-color: #fff;
-	border-top: 1px solid #ccc;
-	padding: 0px;
-	left:-5px;
-	margin: 0;
 
 }
-
-#category-suggestion-container li {
-
-	list-style-type: none;
-	line-height: 20px;
-	border-bottom: 1px solid #ccc;
-	padding:5px 0;
-	height: 39px;
-
-}
-
-
