@@ -53,9 +53,9 @@ var APP = {
 function main() {
 	setUpGreeting();
 	setUpCategoryAutofill();
-	setUpSubjectBox();
 	setUpResultsBox();
 	setUpTips();
+	setUpSubjectBox();
 	$('#send').click(function() {
 		$(APP.resultsID).attr('placeholder', 'start typing here to see result');
 		getResult();
@@ -63,7 +63,7 @@ function main() {
 }
 
 function setUpSubjectBox() {
-	$('#subject-input').keypress(function(e) {
+	$('#subject-input').keypress(function() {
 		if (APP.tipsEnabled) {
 			$(APP.resultsID).attr('placeholder', 'start typing here to see result');
 		}
@@ -74,18 +74,8 @@ function setUpTips() {
 	var tipsButton = $('#tips');
 	tipsButton.click(function() {
 
-		if (APP.tipsEnabled) {
-			// CSS STYLING FOR WHEN TIPS ARE DISABLED
-		} else {
-			// CSS STYLING FOR WHEN TIPS ARE ENABLED
-		}
-
-
 		APP.tipsEnabled = !APP.tipsEnabled;
 		
-		// merge these two conditionals later, after CSS has been added to avoid
-		// merge issues
-
 		if (APP.tipsEnabled) {
 			$(APP.categoryID).attr('placeholder', 'put category here');
 			
@@ -96,11 +86,18 @@ function setUpTips() {
 			if ($('#subject-input').val() != '') {
 				$(APP.resultsID).attr('placeholder', 'start typing here to see result');
 			}
+
+			tipsButton.html("&nbsp;&nbsp;&nbsp;x");
+			tipsButton.css({"color":"#9F9F9F","text-shadow":"none"});
 		} else {
 			$(APP.categoryID).attr('placeholder', '');
 			$('#subject-input').attr('placeholder', '');
 			$(APP.resultsID).attr('placeholder', '');
+
+			tipsButton.html("Tips");
+			tipsButton.css({"color":"#D5D5D5","text-shadow":"0 0 3px #fff"});
 		}
+
 	});
 }
 
@@ -180,7 +177,7 @@ function getResult() {
 	var query = $('#subject-input').val();
 
 	if (!category || query == '') {
-		$(APP.resultsID).attr('placeholder', 'please fill both to and subject fields, then click here');
+		$(APP.resultsID).attr('placeholder', 'Please fill both to and subject fields, then click here.');
 	} else {
 		// fill in ajax request here
 		var result = APP.tempFillerText	
