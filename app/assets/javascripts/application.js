@@ -67,6 +67,24 @@ function main() {
 		$(APP.resultsID).attr('placeholder', 'start typing here to see result');
 		getResult();
 	});
+
+	$( "#tips" ).animate(
+  		{ opacity: 1}, 
+  		500, 
+  		function() {
+		    $( "#tips" ).animate(
+		    	{ opacity: .2 }, 
+		    	500, 
+		    	function() {
+				    $( "#tips" ).animate(
+				    	{ opacity: 1 }, 
+				    	500, 
+				    	function() {
+				    		// finished animation
+				    	});
+				});
+		}
+	);
 }
 
 /*
@@ -153,25 +171,6 @@ function setUpGreeting() {
 	}
 }
 
-
-
-$(document).ready(function(){
-  $( "#tips" ).animate({
-    opacity: 1
-  }, 500, function() {
-    // Animation complete.
-    $( "#tips" ).animate({
-    opacity: .2
-  }, 500, function() {
-    // Animation complete.
-    $( "#tips" ).animate({
-    opacity: 1
-  }, 500, function() {
-    // Animation complete.
-});
-});
-});
-});
 
 /*
  * sets up the autofill dropdown when the category box is pressed (To field)
@@ -271,7 +270,7 @@ function getResult() {
 				    $(APP.resultsID).animate({opacity: 1}, 500);
 				});
 		}, 3000);
-		
+
 	} else {
 
 		var ajax = '/topics.json?topic='+category+'&query='+query;
