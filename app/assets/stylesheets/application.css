@@ -15,7 +15,11 @@
  */
 
 body {
+<<<<<<< HEAD
+font-family: Arial, Helvetica, sans-serif;
+=======
 	font-family: Arial, Helvetica, sans-serif;
+>>>>>>> efe87220dc035189e4a3282fb33379c174390b57
 	padding: 5px;
 	background-color: #fff;
 }
@@ -58,7 +62,6 @@ header div {
 	width: 100%;
 }
 
-
 .infoBox {
 	border-top: thin solid #DCDBDD;
 	/*border-bottom: 1px solid black;*/
@@ -72,10 +75,12 @@ header div {
 	border-top: none;
 }
 
+
 #category {
 	background-color:transparent;
 	border:0px solid white;
 }
+
 
 #info {
 	color: #C5C5C5;
@@ -98,7 +103,31 @@ header div {
 	position: fixed;
 	bottom: 0px;
 	left: 0px;
-	background-color: #ccc;
 	height: 300px;
 	width: 100%;
+	background-color: #ccc;
 }
+
+#body textarea {
+
+width: 95%;
+height: 1000px;
+padding: 5px 15px;
+border:none;
+box-shadow: none;
+outline: none;
+resize: none;
+color: #000;
+
+
+}
+
+#body textarea:focus {
+
+border:none;
+box-shadow: none;
+outline: none;
+resize: none;
+
+}
+
