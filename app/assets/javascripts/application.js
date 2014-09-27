@@ -16,6 +16,8 @@
 //= require_tree .
 
 var APP = {
+
+	// list of the categories available to search on
 	categories: [
 		{
 			email: 'movie.lover@rt.com', 
@@ -30,35 +32,75 @@ var APP = {
 			placeholderPrompt: "Put team here",
 		}
 	],
+
+	// temporary results before api is implemented
 	tempFillerText: "Hey John, \n\nBacon ipsum dolor sit amet short loin chicken pancetta, shankle cow salami brisket venison. Tongue chicken boudin meatloaf. Pork belly t-bone venison, corned beef short ribs tri-tip pork loin prosciutto bacon. Prosciutto cow porchetta ball tip, chuck leberkas frankfurter ground round salami shankle. \n\nBacon landjaeger meatball pancetta kevin pig venison leberkas beef ribs pork chop strip steak jerky tri-tip. Boudin corned beef filet mignon bresaola ground round bacon beef. Shankle beef drumstick strip steak, meatball shoulder tenderloin boudin kevin jowl turducken bacon venison. Shankle biltong cow pork loin, beef capicola beef ribs brisket pancetta salami. Jerky ham hock turkey cow pork chop, spare ribs t-bone landjaeger swine bacon short loin biltong kevin porchetta pastrami.\n\nTurducken salami shank shoulder pancetta spare ribs sausage jowl. Corned beef kevin t-bone ground round andouille sirloin. Pancetta capicola drumstick filet mignon prosciutto. Ham flank pork brisket kevin, tongue fatback sirloin beef leberkas hamburger short ribs.\n\nShoulder andouille pancetta, spare ribs landjaeger brisket meatball pork short ribs prosciutto strip steak filet mignon porchetta. Pork chop jerky pancetta short ribs jowl, hamburger pork pastrami landjaeger bresaola kevin beef. Tongue kevin meatloaf flank pork belly. Chicken porchetta sausage, prosciutto tenderloin filet mignon pancetta. Beef ribs biltong salami boudin, pig beef short ribs corned beef jowl ground round ham jerky sausage swine. Jerky tenderloin meatloaf corned beef chicken jowl.\n\nTri-tip hamburger drumstick porchetta beef ribs meatball ground round pork chop doner, pork belly salami. Shank turkey leberkas chicken venison pork loin ground round salami. Kielbasa flank ham hock, hamburger jerky ribeye leberkas pork loin venison jowl pork belly meatloaf brisket boudin tail. Short ribs pig frankfurter ribeye, pork belly drumstick ground round strip steak kevin tongue. Leberkas rump chuck frankfurter brisket beef ribs pork belly jowl shoulder flank meatloaf turducken pork. Kielbasa salami ham hock pork strip steak pork chop. Pancetta biltong tail pork belly short loin flank pork chop kevin sirloin fatback shoulder beef.\n\nDoes your lorem ipsum text long for something a little meatier? Give our generator a try… it’s tasty!",
+	
+	// will contain array of the words in the result
 	resultWords: [],
+
+	// index into resultWords
 	wordIndex: 0,
+
+	selectedCategory: null, // stores category selected
+	tipsEnabled: false,		// keeps track of whether or not tips are enabled
+
+	// DOM associations
 	resultsID: '#results',
 	categoryID: "#category",
-	selectedCategory: null,
-	tipEnabled: false,
 }
 
 function main() {
 	setUpGreeting();
 	setUpCategoryAutofill();
+	setUpSubjectBox();
 	setUpResultsBox();
 	setUpTips();
+	$('#send').click(function() {
+		$(APP.resultsID).attr('placeholder', 'start typing here to see result');
+		getResult();
+	});
+}
+
+function setUpSubjectBox() {
+	$('#subject-input').keypress(function(e) {
+		if (APP.tipsEnabled) {
+			$(APP.resultsID).attr('placeholder', 'start typing here to see result');
+		}
+	});
 }
 
 function setUpTips() {
 	var tipsButton = $('#tips');
 	tipsButton.click(function() {
 
-		if (tipsEnabled) {
+		if (APP.tipsEnabled) {
 			// CSS STYLING FOR WHEN TIPS ARE DISABLED
 		} else {
 			// CSS STYLING FOR WHEN TIPS ARE ENABLED
 		}
 
-		alert('change')
 
-		tipEnabled = !tipsEnabled;
+		APP.tipsEnabled = !APP.tipsEnabled;
+		
+		// merge these two conditionals later, after CSS has been added to avoid
+		// merge issues
+
+		if (APP.tipsEnabled) {
+			$(APP.categoryID).attr('placeholder', 'put category here');
+			
+			if ($(APP.categoryID).val() != '') {
+				$('#subject-input').attr('placeholder', 'put query here');
+			}
+
+			if ($('#subject-input').val() != '') {
+				$(APP.resultsID).attr('placeholder', 'start typing here to see result');
+			}
+		} else {
+			$(APP.categoryID).attr('placeholder', '');
+			$('#subject-input').attr('placeholder', '');
+			$(APP.resultsID).attr('placeholder', '');
+		}
 	});
 }
 
@@ -96,8 +138,7 @@ function setUpCategoryAutofill() {
 
 	// disable typing in keys in To: field (user's should use drop down)
 	$(APP.categoryID).keypress(function() {return false});
-	$(APP.categoryID).attr('placeholder', 'put category here')
-	
+
 	// show category box on focus / unfocus
 	$(APP.categoryID).focus(function(){
 		$(APP.categoryID).val('');
@@ -108,14 +149,15 @@ function setUpCategoryAutofill() {
 
 function categorySelectionHandler(category) {
 	$(APP.categoryID).val(category.email);
-	$('#subject-input').attr('placeholder', category.placeholderPrompt);
+	if (APP.tipsEnabled) {
+		$('#subject-input').attr('placeholder', category.placeholderPrompt);
+	}
 	$('#category-suggestion-container').hide();
 	APP.selectedCategory = category.category;
 }
 
 function setUpResultsBox() {
 	$(APP.resultsID).focus(getResult);
-	$('#send').click(getResult);
 	$(APP.resultsID).keypress(displayMoreQuery);
 }
 
@@ -131,7 +173,7 @@ function displayMoreQuery(e) {
 }
 
 function getResult() {
-	$(APP.resultsID).attr('placeholder', 'start typing here to see result');
+	if (APP.tipsEnabled) $(APP.resultsID).attr('placeholder', 'start typing here to see result');
 	$(APP.resultsID).val('');
 
 	var category = APP.selectedCategory;
