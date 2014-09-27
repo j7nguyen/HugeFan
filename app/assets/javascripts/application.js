@@ -100,14 +100,14 @@ function displayMoreQuery(e) {
 }
 
 function getResult() {
-	$(APP.resultsID).attr('placeholder', 'starting typing here to see result');
+	$(APP.resultsID).attr('placeholder', 'start typing here to see result');
 	$(APP.resultsID).val('');
 
 	var category = APP.selectedCategory;
 	var query = $('#subject-input').val();
 
 	if (!category || query == '') {
-		alert('Please fill both To and Subject fields')
+		$(APP.resultsID).attr('placeholder', 'please fill both to and subject fields, then click here');
 	} else {
 		// fill in ajax request here
 		var result = APP.tempFillerText		

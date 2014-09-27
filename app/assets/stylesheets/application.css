@@ -72,20 +72,20 @@ header {
 	display: inline-block;
 }
 
-	#info {
-		color: #C5C5C5;
-	}
+#tips {
+	color: #C5C5C5;
+}
 
-	#title {
-		position: relative;
-		font-weight: bold;
-		left:11%;
-	}
+#title {
+	position: relative;
+	font-weight: bold;
+	left:11%;
+}
 
-	#send {
-		float: right;
-		color: #4B8AEC;
-	}
+#send {
+	float: right;
+	color: #4B8AEC;
+}
 
 #infoBox {
 	width: 100;
@@ -115,6 +115,8 @@ header {
 	width: 80%;
 	border-radius: 0px;
 }
+
+
 
 #category {
 	background-color:transparent;
