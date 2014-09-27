@@ -46,19 +46,25 @@ function main() {
 	setUpTips();
 }
 
+		tipsEnabled = false;
 function setUpTips() {
 	var tipsButton = $('#tips');
 	tipsButton.click(function() {
 
+
+
 		if (tipsEnabled) {
 			// CSS STYLING FOR WHEN TIPS ARE DISABLED
+			tipsButton.html("Tips");
+			tipsButton.css({"color":"#D5D5D5","text-shadow":"0 0 3px #fff"});
+
 		} else {
 			// CSS STYLING FOR WHEN TIPS ARE ENABLED
+			tipsButton.html("&nbsp;&nbsp;&nbsp;x");
+			tipsButton.css({"color":"#9F9F9F","text-shadow":"none"});
 		}
 
-		alert('change')
-
-		tipEnabled = !tipsEnabled;
+		tipsEnabled = !tipsEnabled;
 	});
 }
 
