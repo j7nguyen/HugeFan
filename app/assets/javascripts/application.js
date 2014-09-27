@@ -64,7 +64,7 @@ function main() {
 	setUpTips();
 	setUpSubjectBox();
 	$('#send').click(function() {
-		$(APP.resultsID).attr('placeholder', 'start typing here to see result');
+		$(APP.resultsID).attr('placeholder', '(start typing here to see result)');
 		getResult();
 	});
 
@@ -95,7 +95,7 @@ function setUpSubjectBox() {
 	$(APP.subjectID).keypress(function() {
 		if (APP.tipsEnabled) {
 			$(APP.resultsID).attr('placeholder', 
-				'start typing here to see result');
+				'(start typing here to see result)');
 		}
 	});
 }
