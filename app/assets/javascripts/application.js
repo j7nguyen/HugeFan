@@ -26,10 +26,10 @@ var APP = {
 			placeholderPrompt: 'Put movie here',
 		},
 		{
-			email: 'sportsFan600@gmail.com', 
-			name: 'Sports Fan',
-			category: 'Sports',
-			placeholderPrompt: "Put team here",
+			email: 'xX_music_Xx@gmail.com', 
+			name: 'Music Guru',
+			category: 'Music',
+			placeholderPrompt: "Put artist here",
 		}
 	],
 
