@@ -238,7 +238,6 @@ samp {
 /**
  * Known limitation: by default, Chrome and Safari on OS X allow very limited
  * styling of `select`, unless a `border` property is set.
- */
  
 
 /**
@@ -423,4 +422,5 @@ table {
 td,
 th {
   padding: 0;
-}*/
+}
+
