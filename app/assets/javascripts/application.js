@@ -23,13 +23,13 @@ var APP = {
 			email: 'movie.lover@rt.com', 
 			name: 'Movie Lover',
 			category: 'Movies',
-			placeholderPrompt: 'Put movie here',
+			placeholderPrompt: '(put movie here)',
 		},
 		{
 			email: 'xX_music_Xx@gmail.com', 
 			name: 'Music Guru',
 			category: 'Music',
-			placeholderPrompt: "Put artist here",
+			placeholderPrompt: "(put artist here)",
 		}
 	],
 
@@ -113,13 +113,6 @@ function setUpTips() {
 	}
 		
 	// set up tick handler (toggles style and hint presence)
-	$("#to, #subject, #body").click(function() {
-		tipsButton.html("Tips");
-			tipsButton.css({"color":"#9F9F9F","text-shadow":"none"});
-			$(APP.categoryID).attr('placeholder', '');
-			$(APP.subjectID).attr('placeholder', '');
-			$(APP.resultsID).attr('placeholder', '');
-	});
 
 	$('#tips').click(function() {
 
@@ -260,19 +253,6 @@ function getResult() {
 	if (!category || query == '') {
 		$(APP.resultsID).attr('placeholder', 
 			'Please fill both the to and subject fields out, then click here.');
-
-		setTimeout(
-			function(){
-				$(APP.resultsID).animate(
-					{opacity: 0}, 
-					700, 
-					function() {
-					    $(APP.resultsID).attr('placeholder', '');
-					    $(APP.resultsID).animate({opacity: 1}, 500);
-					});
-				}, 
-			3000
-		);
 
 	} else {
 
