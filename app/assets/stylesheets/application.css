@@ -146,13 +146,12 @@ header div {
 #category-suggestion-container {
 
 position: absolute;
-width: 50%;
+width: 100%;
+top: 92px;
 background-color: #fff;
-border-radius: 5px;
 border: 1px solid #ccc;
-padding: 15px;
+padding: 0px;
 left:0px;
-right:0px;
 
 }
 
