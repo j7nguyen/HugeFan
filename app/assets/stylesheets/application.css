@@ -13,10 +13,6 @@
  *= require_tree .
  *= require_self
  */
-
-@-ms-viewport{
-  width: device-width;
-}
  
 body {
 	width: 100%;
