@@ -50,7 +50,11 @@ function setUpTips() {
 	var tipsButton = $('#tips');
 	tipsButton.click(function() {
 
-		// PUT CSS CHANGES HERE
+		if (tipsEnabled) {
+			// CSS STYLING FOR WHEN TIPS ARE DISABLED
+		} else {
+			// CSS STYLING FOR WHEN TIPS ARE ENABLED
+		}
 
 		alert('change')
 
