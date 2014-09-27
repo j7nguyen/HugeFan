@@ -35,6 +35,7 @@ var APP = {
 	wordIndex: 0,
 	resultsID: '#results',
 	categoryID: "#category",
+	selectedCategory: null,
 }
 
 function main() {
@@ -78,6 +79,7 @@ function categorySelectionHandler(category) {
 	$(APP.categoryID).val(category.email);
 	$('#subject-input').attr('placeholder', category.placeholderPrompt);
 	$('#category-suggestion-container').hide();
+	APP.selectedCategory = category.category;
 }
 
 function setUpResultsBox() {
@@ -101,8 +103,15 @@ function getResult() {
 	$(APP.resultsID).attr('placeholder', 'starting typing here to see result');
 	$(APP.resultsID).val('');
 
-	// fill in ajax request here
-	var result = APP.tempFillerText
+	var category = APP.selectedCategory;
+	var query = $('#subject-input').val();
+
+	if (!category || query == '') {
+		alert('Please fill both To and Subject fields')
+	} else {
+		// fill in ajax request here
+		var result = APP.tempFillerText		
+	}
 
 	APP.wordIndex = 0;
 	APP.resultWords = result.split(' ');
