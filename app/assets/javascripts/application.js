@@ -65,6 +65,7 @@ function setUpCategoryAutofill() {
 	// disable typing in keys in To: field (user's should use drop down)
 	$(APP.categoryID).keypress(function() {return false});
 	$(APP.categoryID).attr('placeholder', 'put category here')
+	
 	// show category box on focus / unfocus
 	$(APP.categoryID).focus(function(){
 		$(APP.categoryID).val('');
