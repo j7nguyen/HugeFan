@@ -37,6 +37,10 @@ module Api
         return bullshit
       end
     end
+    
+    def bullshit
+      "I really enjoyed the cinematography in that movie."
+    end
 
     private
 
