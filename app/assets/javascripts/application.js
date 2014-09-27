@@ -36,12 +36,26 @@ var APP = {
 	resultsID: '#results',
 	categoryID: "#category",
 	selectedCategory: null,
+	tipEnabled: false,
 }
 
 function main() {
 	setUpGreeting();
 	setUpCategoryAutofill();
 	setUpResultsBox();
+	setUpTips();
+}
+
+function setUpTips() {
+	var tipsButton = $('#tips');
+	tipsButton.click(function() {
+
+		// PUT CSS CHANGES HERE
+
+		alert('change')
+
+		tipEnabled = !tipsEnabled;
+	});
 }
 
 function setUpGreeting() {
