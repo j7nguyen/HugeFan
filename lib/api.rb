@@ -1,20 +1,31 @@
 require 'json'
 
-class Api
+module Api
+    class Api
 
-    def initialize(topic)
-        @topic = topic
-        @api_file = 'api.keys'
-        load_api_keys()
+        def initialize(topic)
+            @topic = topic
+            @api_file = 'api.keys'
+            load_api_keys()
+        end
+
+        def get_summary()
+        end
+
+        def load_api_keys()
+            file = File.open(@api_file, "r")
+            data = file.read
+            obj = JSON.parse(data)
+            @apiKey = obj
+        end
     end
 
-    def get_summary()
-    end
+    class RTApi < Api
 
-    def load_api_keys()
-        file = File.open(@api_file, "r")
-        data = file.read
-        obj = JSON.parse(data)
-        @apiKey = obj
+        @@base_url = "http://api.rottentomatoes.com/api/public/v1.0/%s.json?apikey=%s%s" #endpoint, apiKey, params
+
+        def get_summary()
+            return "bullshit for now"
+        end
     end
 end
