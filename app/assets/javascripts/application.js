@@ -30,6 +30,7 @@ var APP = {
 	resultWords: [],
 	wordIndex: 0,
 	resultsID: '#results',
+	categoryID: "#category",
 }
 
 function main() {
@@ -45,8 +46,9 @@ function setUpCategoryAutofill() {
 	// }	
 	// categoryBox.append('</ul>');
 	categoryBox.hide();
-	$('#category').focus(function(){categoryBox.show()});
-	$('#category').blur(function() {categoryBox.hide()})
+	$(APP.categoryID).keypress(function() {return false});
+	$(APP.categoryID).focus(function(){categoryBox.show()});
+	$(APP.categoryID).blur(function() {categoryBox.hide()})
 }
 
 function setUpResultsBox() {
