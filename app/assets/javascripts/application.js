@@ -264,7 +264,7 @@ function getResult() {
 			APP.resultWords = result.split(' ');	
 		});
 
-		if (wikiEnable) { addWikipediaAdditions(query); }
+		if (APP.wikiEnable) { addWikipediaAdditions(query); }
 	}
 }
 
