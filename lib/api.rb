@@ -8,13 +8,13 @@ module Api
         def initialize(topic)
             @topic = topic
             @api_file = 'lib/api.keys'
-            load_api_keys()
+            load_api_keys
         end
 
-        def get_summary()
+        def get_info
         end
 
-        def load_api_keys()
+        def load_api_keys
             file = File.open(@api_file, "r")
             data = file.read
             obj = JSON.parse(data)
@@ -26,15 +26,6 @@ module Api
 
         @@search_url = "http://api.rottentomatoes.com/api/public/v1.0/%s.json?apikey=%s%s" #endpoint, apiKey, params
         @@info_url = "http://api.rottentomatoes.com/api/public/v1.0/movies/%s.json?apikey=%s"
-
-        def get_summary()
-            movie_id = search(@topic)
-            if movie_id
-              info(movie_id)
-            else
-              return "BULLSHIT BRO"
-            end
-        end
 
         def get_info
             movie_id = search(@topic)
