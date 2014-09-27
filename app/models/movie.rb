@@ -48,12 +48,14 @@ class Movie < ActiveRecord::Base
   
   def talking_points
     if self.year.nil?
-      return self.title
+      tp_string = self.title
     else
-      return self.overall_opinion + "\n" + self.year_statement + "\n" +
+      tp_string = self.overall_opinion + "\n" + self.year_statement + "\n" +
         self.actors_statement + "\n" + self.director_statement + "\n\n" +
         self.concensus_info
     end
+    
+    return { talking_points: tp_string}
   end
   
 end
