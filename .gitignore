@@ -1,4 +1,3 @@
-*.keys
 log/
 *.log
 *.sublime-project
