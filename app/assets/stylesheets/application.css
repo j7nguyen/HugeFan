@@ -14,9 +14,14 @@
  *= require_self
  */
 
+@-ms-viewport{
+  width: device-width;
+}
  
 body {
+	width: 100%;
 	font-family: Arial, Helvetica, sans-serif;
+	font-size: 1em;
 	padding: 5px;
 	background-color: #fff;
 }
@@ -173,3 +178,5 @@ margin: 0;
 #results {
 	font-size: .5em;
 }*/
+
+
