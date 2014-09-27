@@ -15,6 +15,10 @@
 //= require turbolinks
 //= require_tree .
 
+var APP_GLBLS = {
+
+}
+
 var CATEGORY_OPTIONS = [
 	{
 		email: 'movie.lover@rt.com', 
@@ -27,18 +31,20 @@ var CATEGORY_OPTIONS = [
 ]
 
 function main() {
-	$('#category').focus(displayCategories);
-
+	setUpCategoryAutofill();
 }
 
-function displayCategories() {
-	var categoryBox = $('#to');
-	
-	categoryBox.append('<ul>')
+function setUpCategoryAutofill() {
+	var categoryBox = $('#category-suggestion-container');
+	categoryBox.append('<ul id="category-suggestions">');
 	for (var key in CATEGORY_OPTIONS) {
-		categoryBox.append($('<li>' + CATEGORY_OPTIONS[key].email + '</li>'))
+		categoryBox.append($('<li>' + CATEGORY_OPTIONS[key].email + '</li>'));
 	}	
-	categoryBox.append('</ul>')
+	categoryBox.append('</ul>');
+	categoryBox.hide();
+	$('#category').focus(function(){categoryBox.show()});
+	$('#category').blur(function() {categoryBox.hide()})
+
 }
 
 $(document).ready(main);
