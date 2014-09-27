@@ -93,7 +93,15 @@ function setUpTips() {
 	}
 		
 	// set up tick handler (toggles style and hint presence)
-	tipsButton.click(function() {
+	$("#to, #subject, #body").click(function() {
+		tipsButton.html("Tips");
+			tipsButton.css({"color":"#9F9F9F","text-shadow":"none"});
+			$(APP.categoryID).attr('placeholder', '');
+			$(APP.subjectID).attr('placeholder', '');
+			$(APP.resultsID).attr('placeholder', '');
+	});
+
+	$('#tips').click(function() {
 
 		APP.tipsEnabled = !APP.tipsEnabled;
 		
