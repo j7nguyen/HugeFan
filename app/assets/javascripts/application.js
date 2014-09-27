@@ -45,12 +45,15 @@ var APP = {
 	selectedCategory: null, // stores category selected
 	tipsEnabled: true,		// keeps track of whether or not tips are enabled
 
-	// DOM associations
+	// DOM associations to input boxes
 	resultsID: '#results',
-	categoryID: "#category",
+	categoryID: '#category',
+	subjectID: '#subject-input',
 }
 
 function main() {
+
+
 	setUpGreeting();
 	setUpCategoryAutofill();
 	setUpResultsBox();
@@ -63,7 +66,7 @@ function main() {
 }
 
 function setUpSubjectBox() {
-	$('#subject-input').keypress(function() {
+	$(APP.subjectID).keypress(function() {
 		if (APP.tipsEnabled) {
 			$(APP.resultsID).attr('placeholder', 'start typing here to see result');
 		}
@@ -72,6 +75,11 @@ function setUpSubjectBox() {
 
 function setUpTips() {
 	var tipsButton = $('#tips');
+	if (APP.tipsEnabled) { 
+		$(APP.categoryID).attr('placeholder', 
+			'put category here (press tips to disable hints)');
+	}
+		
 	tipsButton.click(function() {
 
 		APP.tipsEnabled = !APP.tipsEnabled;
@@ -80,10 +88,10 @@ function setUpTips() {
 			$(APP.categoryID).attr('placeholder', 'put category here');
 			
 			if ($(APP.categoryID).val() != '') {
-				$('#subject-input').attr('placeholder', 'put query here');
+				$(APP.subjectID).attr('placeholder', 'put query here');
 			}
 
-			if ($('#subject-input').val() != '') {
+			if ($(APP.subjectID).val() != '') {
 				$(APP.resultsID).attr('placeholder', 'start typing here to see result');
 			}
 
@@ -91,7 +99,7 @@ function setUpTips() {
 			tipsButton.css({"color":"#9F9F9F","text-shadow":"none"});
 		} else {
 			$(APP.categoryID).attr('placeholder', '');
-			$('#subject-input').attr('placeholder', '');
+			$(APP.subjectID).attr('placeholder', '');
 			$(APP.resultsID).attr('placeholder', '');
 
 			tipsButton.html("Tips");
@@ -147,7 +155,7 @@ function setUpCategoryAutofill() {
 function categorySelectionHandler(category) {
 	$(APP.categoryID).val(category.email);
 	if (APP.tipsEnabled) {
-		$('#subject-input').attr('placeholder', category.placeholderPrompt);
+		$(APP.subjectID).attr('placeholder', category.placeholderPrompt);
 	}
 	$('#category-suggestion-container').hide();
 	APP.selectedCategory = category.category;
