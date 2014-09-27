@@ -51,9 +51,11 @@ var APP = {
 	subjectID: '#subject-input',
 }
 
+/*
+ * calls set up functions
+ * called when doc is ready
+ */
 function main() {
-
-
 	setUpGreeting();
 	setUpCategoryAutofill();
 	setUpResultsBox();
@@ -65,21 +67,32 @@ function main() {
 	});
 }
 
+/*
+ * sets up subject box, which is used to contain the query.
+ * as keys are entered, if tips are enabled a prompt appears in the body
+ */
 function setUpSubjectBox() {
 	$(APP.subjectID).keypress(function() {
 		if (APP.tipsEnabled) {
-			$(APP.resultsID).attr('placeholder', 'start typing here to see result');
+			$(APP.resultsID).attr('placeholder', 
+				'start typing here to see result');
 		}
 	});
 }
 
+/*
+ * set up tips handler and interactions
+ */
 function setUpTips() {
 	var tipsButton = $('#tips');
+
+	// show first hint if tips are enabled
 	if (APP.tipsEnabled) { 
 		$(APP.categoryID).attr('placeholder', 
 			'put category here (press tips to disable hints)');
 	}
 		
+	// set up tick handler (toggles style and hint presence)
 	tipsButton.click(function() {
 
 		APP.tipsEnabled = !APP.tipsEnabled;
@@ -109,6 +122,10 @@ function setUpTips() {
 	});
 }
 
+/*
+ * sets up greeting which shows up in subject line
+ * depends on the time of day
+ */
 function setUpGreeting() {
 	var time = new Date();
 	var currentHour = time.getHours();
@@ -121,8 +138,13 @@ function setUpGreeting() {
 	}
 }
 
+/*
+ * sets up the autofill dropdown when the category box is pressed (To field)
+ */
 function setUpCategoryAutofill() {
 	var categoryBox = $('#category-suggestion-container');
+
+	// create dropdown (initially hidden)
 	categoryBox.append('<ul id="category-suggestions">');
 	for (var key in APP.categories) {
 		var category = APP.categories[key];
@@ -152,6 +174,10 @@ function setUpCategoryAutofill() {
 	});
 }
 
+/*
+ * called when a category is selected, populates the TO field, hides the 
+ * dropdown and shows hints as necessary
+ */
 function categorySelectionHandler(category) {
 	$(APP.categoryID).val(category.email);
 	if (APP.tipsEnabled) {
@@ -161,11 +187,20 @@ function categorySelectionHandler(category) {
 	APP.selectedCategory = category.category;
 }
 
+/*
+ * sets up the results box, which corresponds to the body
+ * ajax request is made when the field is selected, result is shown as keys
+ * are pressed in the body
+ */
 function setUpResultsBox() {
 	$(APP.resultsID).focus(getResult);
 	$(APP.resultsID).keypress(displayMoreQuery);
 }
 
+/*
+ * called when keypress is made in the body field.
+ * shows more results in the body
+ */
 function displayMoreQuery(e) {
 	if ( APP.wordIndex < APP.resultWords.length ) {
 		$(APP.resultsID).val( 
@@ -177,15 +212,20 @@ function displayMoreQuery(e) {
 	return false; // surpress the user input from being added
 }
 
+/*
+ * makes ajax request using user's query, messes around with hints as necessary
+ */
 function getResult() {
-	if (APP.tipsEnabled) $(APP.resultsID).attr('placeholder', 'start typing here to see result');
+	if (APP.tipsEnabled) $(APP.resultsID).attr('placeholder', 
+		'start typing here to see result');
 	$(APP.resultsID).val('');
 
 	var category = APP.selectedCategory;
 	var query = $('#subject-input').val();
 
 	if (!category || query == '') {
-		$(APP.resultsID).attr('placeholder', 'Please fill both to and subject fields, then click here.');
+		$(APP.resultsID).attr('placeholder', 
+			'Please fill both to and subject fields, then click here.');
 	} else {
 
 		if (category === 'Movies') {
@@ -201,7 +241,6 @@ function getResult() {
 			APP.wordIndex = 0;
 			APP.resultWords = result.split(' ');	
 		}
-
 
 	}
 }
