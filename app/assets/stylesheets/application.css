@@ -15,7 +15,11 @@
  */
 
 body {
+<<<<<<< HEAD
 font-family: Arial, Helvetica, sans-serif;
+=======
+	font-family: Arial, Helvetica, sans-serif;
+>>>>>>> efe87220dc035189e4a3282fb33379c174390b57
 	padding: 5px;
 	background-color: #fff;
 }
@@ -71,6 +75,13 @@ header div {
 	border-top: none;
 }
 
+
+#category {
+	background-color:transparent;
+	border:0px solid white;
+}
+
+
 #info {
 	color: #C5C5C5;
 }
@@ -119,7 +130,4 @@ outline: none;
 resize: none;
 
 }
-
-
-
 
