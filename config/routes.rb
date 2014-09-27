@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   resources :topics
+  resources :proxy
   get "static/index"
   root to: 'static#index'
   # The priority is based upon order of creation: first created -> highest priority.

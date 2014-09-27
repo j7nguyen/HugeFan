@@ -45,6 +45,8 @@ var APP = {
 	selectedCategory: null, // stores category selected
 	tipsEnabled: true,		// keeps track of whether or not tips are enabled
 
+	wikiEnable: true,
+
 	// DOM associations to input boxes
 	resultsID: '#results',
 	categoryID: '#category',
@@ -105,7 +107,8 @@ function setUpTips() {
 			}
 
 			if ($(APP.subjectID).val() != '') {
-				$(APP.resultsID).attr('placeholder', 'start typing here to see result');
+				$(APP.resultsID).attr('placeholder', 
+					'start typing here to see result');
 			}
 
 			tipsButton.html("&nbsp;&nbsp;&nbsp;x");
@@ -228,21 +231,42 @@ function getResult() {
 			'Please fill both to and subject fields, then click here.');
 	} else {
 
-		if (category === 'Movies') {
-			var ajax = '/topics.json?topic='+category+'&query='+query;
-			console.log(ajax);
-			$.getJSON(ajax, null, function(data) {
-				var result = data.talking_points;
-				APP.wordIndex = 0;
-				APP.resultWords = result.split(' ');	
-			});
-		} else {
-			var result = APP.tempFillerText;
+		var ajax = '/topics.json?topic='+category+'&query='+query;
+		console.log(ajax);
+		$.getJSON(ajax, null, function(data) {
+			var result = data.talking_points;
 			APP.wordIndex = 0;
 			APP.resultWords = result.split(' ');	
-		}
+		});
 
+		if (wikiEnable) { addWikipediaAdditions(query); }
 	}
+}
+
+function addWikipediaAdditions(query) {
+	var ajax = '/proxy?url=http://en.wikipedia.org/w/api.php?action=query&prop=extracts&format=json&exintro=&titles=';
+	ajax += toTitleCase(query);
+
+	$.getJSON(ajax, null, function(data) {
+		if (!data.query.pages['-1']) {
+			console.log('entered');
+			for (var key in data.query.pages) {
+				var wikiResults = data.query.pages[key].extract
+				wikiResults = $(wikiResults).text();
+				wikiResults = wikiResults.substring(0, 
+					wikiResults.lastIndexOf(".") + 2);
+				var wikiWords = wikiResults.split(' ');
+				APP.resultWords.push('\n\n');
+				APP.resultWords.push.apply(APP.resultWords, wikiWords);
+			}
+		}
+	});
+}
+
+// ty stack overflow 
+// http://stackoverflow.com/questions/4878756/javascript-how-to-capitalize-first-letter-of-each-word-like-a-2-word-city
+function toTitleCase(str) {
+    return str.replace(/\w\S*/g, function(txt){return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();});
 }
 
 $(document).ready(main);
