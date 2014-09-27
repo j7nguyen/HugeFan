@@ -1,28 +1,43 @@
 class Movie < ActiveRecord::Base
   
   def overall_opinion
-    if self.score.to_i > 60
-      return "Oh yeah, I loved " + self.title + "!"
+    if self.score.to_i >= 90
+      return [
+      "Oh yeah, I loved #{self.title}!",
+      "Dude, #{self.title} was epic!", 
+      "I would kill you if you didn't like #{self.title}"].sample
+      
+    elsif self.score.to_i < 90 && self.score.to_i >= 60
+      return ["Yeah, #{self.title} was decent, not one of my favorites though.",
+        "Oh yeah, I saw that, I'd say I was entertained.",
+        "Yeah #{self.title} is good in that wait-til-its-on-netflix-or-download-a-torrent kinda way."].sample
     else
-      return self.title + " was a piece of shit! I can't believe you like that movie!"
+      return ["#{self.title} was a piece of shit! I can't believe you like that movie!",
+      "Ugh, why are you talking about #{self.title}?",
+      "Oh, you like #{self.title}? Do you also like being punched in the brain? Because that's what watching that movie is like."].sample
     end
   end
   
   def year_statement
     if self.score.to_i >= 90
-      return "Easily the best movie of " + self.year.to_s
-    elsif self.score.to_i > 60 && self.score.to_i < 90 
-      return "One of the better movies of " + self.year.to_s
+      return ["Easily the best movie of " + self.year.to_s,
+        "That movie was one of the best parts of #{self.year} for me.",
+        "Even #{Time.now.year - self.year.to_i} years later, #{self.title} holds up."].sample
+    elsif self.score.to_i >= 60 && self.score.to_i < 90 
+      return "Middle of the pack for #{self.year} releases."
     else
-      return "When did that come out, like " + self.year.to_s + "?"
+      return ["That almost ruined #{self.year} for me. Actually, I think it did.",
+        "When people ask me what I was doing in #{self.year}, I wish I could forget watching that movie."].sample
     end
   end
   
   def actors_statement
     if self.score.to_i >= 90
-      return self.actor_one + " did a great job as " + self.character_one
+      return ["#{self.actor_one} did a great job as #{self.character_one}.",
+        "Sometimes, I feel like I'm #{self.character_one}.",
+        "If I was half as talented as #{self.actor_one} or #{self.actor_two}, well, I probably would have been in the movie."].sample
     elsif self.score.to_i >60 && self.score.to_i < 90
-      return "I thought #{self.actor_one} and #{self.actor_two} were ok, but I would have preferred someone more dynamic."
+      return "I thought #{self.actor_one} and #{self.actor_two} were good, though I probably would have preferred someone more dynamic."
     else
       return "Not one of the bright spots on #{self.actor_one}'s resume, though I'm sure that greedy fuck is sleeping ok at night."
     end
@@ -51,8 +66,8 @@ class Movie < ActiveRecord::Base
       tp_string = self.title
     else
       tp_string = self.overall_opinion + "\n" + self.year_statement + "\n" +
-        self.actors_statement + "\n" + self.director_statement + "\n\n" +
-        self.concensus_info
+        self.actors_statement + "\n" + self.director_statement + 
+         (self.critics_concensus ? "\n\n" + self.critics_concensus : "" )
     end
     
     return { talking_points: tp_string}

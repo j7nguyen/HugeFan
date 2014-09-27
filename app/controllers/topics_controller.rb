@@ -6,15 +6,17 @@ class TopicsController < ApplicationController
     if params[:topic] == "Movies"
       query = params[:query]
       @rtapi = Api::RTApi.new(query)
-      if @rtapi.get_info['title']
-        @info = @rtapi.get_info
+      @info = @rtapi.get_info
+      if @info['title']
         @title = @info['title']
         @year = @info['year']
         @score = @info['ratings']['critics_score']
         @actor_one = @info['abridged_cast'][0]['name']
-        @character_one = @info['abridged_cast'][0]['characters'][0]
+        @character_one = (@info['abridged_cast'][0]['characters'][0] ? 
+          @info['abridged_cast'][0]['characters'][0] : "The main character")
         @actor_two = @info['abridged_cast'][1]['name']
-        @character_two = @info['abridged_cast'][1]['characters'][0]
+        @character_two = (@info['abridged_cast'][1]['characters'][0] ?
+          @info['abridged_cast'][1]['characters'][0] : "The other character")
         @concensus = @info['critics_concensus']
         @director = @info['abridged_directors'][0]['name']
         @genre = @info['genres'][0]
@@ -27,15 +29,31 @@ class TopicsController < ApplicationController
         score: "", actor_one: "", character_one: "", actor_two: "", character_two:"",
         critics_concensus: "", director: "", genre: "")
       end
-    elsif params[:topic] == "Sports"
-      @summary = "Some sports shit"
+      
+      respond_to do |format|
+        format.html
+        format.json { render json: @movie.talking_points }
+      end
+      
+    elsif params[:topic] == "Music"
+      query = params[:query]
+      @beatsapi = Api::BeatsApi.new(query)
+      @info = @beatsapi.get_info
+      if @info[0]['artist_display_name']
+        @artist = Artist.new( name: @info[0]['artist_display_name'],
+        top_album: @info[0]['title'],
+        favorite_track: @info[0]['refs']['tracks'].sample['display'])
+      else
+        @artist = Artist.new( name: "No artist found.")
+      end
+      
+      respond_to do |format|
+        format.html
+        format.json { render json: @artist.talking_points }
+      end
     end
 
 
-    respond_to do |format|
-      format.html
-      format.json { render json: @movie.talking_points }
-    end
 
   end
   
