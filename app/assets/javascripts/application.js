@@ -15,6 +15,30 @@
 //= require turbolinks
 //= require_tree .
 
-$(document).ready(function(){
+var CATEGORY_OPTIONS = [
+	{
+		email: 'movie.lover@rt.com', 
+		category: 'movies'
+	},
+	{
+		email: 'sportsFan600@gmail.com', 
+		category: 'sports'
+	}
+]
 
-})
+function main() {
+	$('#category').focus(displayCategories);
+
+}
+
+function displayCategories() {
+	var categoryBox = $('#to');
+	
+	categoryBox.append('<ul>')
+	for (var key in CATEGORY_OPTIONS) {
+		categoryBox.append($('<li>' + CATEGORY_OPTIONS[key].email + '</li>'))
+	}	
+	categoryBox.append('</ul>')
+}
+
+$(document).ready(main);

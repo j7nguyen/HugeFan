@@ -15,59 +15,63 @@
  */
 
 body {
-  	padding: 5px;
-  	background-color: #fff;
-  }
-  
-  header {
-  	background-color: #ededed;
-  	padding:8px;
-  	width: 100%;
-  	position: fixed;
-  	top:0px;
-  	left: 0px;
-  	border-bottom: 1px solid #bbb;
-  }
-  
-  header div {
-  	display: inline-block;
-  }
+	padding: 5px;
+	background-color: #fff;
+}
 
-  #wrapper {
-  	width: 100%;
-  }
+header {
+	background-color: #ededed;
+	padding:8px;
+	width: 100%;
+	position: fixed;
+	top:0px;
+	left: 0px;
+	border-bottom: 1px solid #bbb;
+}
 
-  .infoBox {
-  	border-top: 1px solid black;
-  	/*border-bottom: 1px solid black;*/
-  	padding: 5px;
-  }
+header div {
+	display: inline-block;
+}
 
-  #to {
-  	margin-top: 34px;
-  	border-top: none;
-  }
+#wrapper {
+	width: 100%;
+}
 
-  #info {
+.infoBox {
+	border-top: 1px solid black;
+	padding: 5px;
+}
 
-  }
+#to {
+	margin-top: 34px;
+	border-top: none;
+}
 
-  #title {
-  	font-weight: bold;
-  	margin-left:24%;
-  }
+#info {
 
-  #send {
-  	float: right;
-  	margin-right: 15px;
-  }
+}
 
-  #keyboard {
-  	position: fixed;
-  	bottom: 0px;
-  	left: 0px;
-  	background-color: #ccc;
-  	height: 300px;
-  	width: 100%;
-  	display: none;
-  }
+#title {
+	font-weight: bold;
+	margin-left:24%;
+}
+
+#send {
+	float: right;
+	margin-right: 15px;
+}
+
+#keyboard {
+	position: fixed;
+	bottom: 0px;
+	left: 0px;
+	background-color: #ccc;
+	height: 300px;
+	width: 100%;
+	display: none;
+}
+
+#category {
+	background-color:transparent;
+	border:0px solid white;
+}
