@@ -3,7 +3,7 @@ require 'cgi'
 require 'net/http'
 
 module Api
-    class Api
+    class BaseApi
 
         def initialize(topic)
             @topic = topic
@@ -22,7 +22,7 @@ module Api
         end
     end
 
-    class RTApi < Api
+    class RTApi < BaseApi
 
         @@search_url = "http://api.rottentomatoes.com/api/public/v1.0/%s.json?apikey=%s%s" #endpoint, apiKey, params
         @@info_url = "http://api.rottentomatoes.com/api/public/v1.0/movies/%s.json?apikey=%s"
