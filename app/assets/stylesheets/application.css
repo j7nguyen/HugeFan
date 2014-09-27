@@ -68,7 +68,7 @@ header div {
 .infoBox {
 	width: 98%;
 	border-top: thin solid #DCDBDD;
-	/*border-bottom: 1px solid black;*/
+	/* border-bottom: 1px solid black; */
 	padding:10px 0px;
 	font-size: .9em;
 	color: #B9B9BC;
@@ -94,7 +94,7 @@ header div {
 	font-weight: bold;
 	position: absolute;
 	left:31%;
-	/*margin-left:24%;*/
+	/* margin-left:24%; */
 }
 
 #send {
@@ -153,14 +153,14 @@ header div {
 
 #category-suggestion-container {
 
-position: absolute;
-width: 100%;
-top: 87px;
-background-color: #fff;
-border-top: 1px solid #ccc;
-padding: 0px;
-left:-5px;
-margin: 0;
+	position: absolute;
+	width: 100%;
+	top: 87px;
+	background-color: #fff;
+	border-top: 1px solid #ccc;
+	padding: 0px;
+	left:-5px;
+	margin: 0;
 
 }
 
@@ -173,11 +173,5 @@ margin: 0;
 	height: 39px;
 
 }
-
-/*
-#results {
-	font-size: .5em;
-}
-*/
 
 
