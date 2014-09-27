@@ -1,0 +1,8 @@
+default: &default
+  host: localhost
+  adapter: postgresql
+  encoding: unicode
+  database: hugefan_default
+
+development:
+  <<: *default
