@@ -15,51 +15,61 @@
  */
 
 body {
-	padding: 5px;
-	background-color: #fff;
-}
+  	padding: 5px;
+  	background-color: #fff;
+  }
+  
+  header {
+  	background-color: #ededed;
+  	padding:8px;
+  	width: 100%;
+  	position: fixed;
+  	top:0px;
+  	left: 0px;
+  	border-bottom: 1px solid #bbb;
+  }
+  
+  header div {
+  	display: inline-block;
+  }
 
-header {
-	background-color: #ededed;
-	padding:8px;
-	width: 100%;
-	position: fixed;
-	top:0px;
-	left: 0px;
-	border-bottom: 1px solid #bbb;
-}
+  #wrapper {
+  	width: 100%;
+  }
 
-header div {
-	display: inline-block;
-}
+  .infoBox {
+  	border-top: 1px solid black;
+  	/*border-bottom: 1px solid black;*/
+  	padding: 5px;
+  }
 
-#wrapper {
-	width: 100%;
-}
-
-.infoBox {
-	border-top: 1px solid black;
-	/*border-bottom: 1px solid black;*/
-	padding: 5px;
-}
-
-#to {
-	margin-top: 34px;
-	border-top: none;
-}
+  #to {
+  	margin-top: 34px;
+  	border-top: none;
+  }
 
 
 
-#info {
+  #info {
 
-}
+  }
 
-#title {
-	font-weight: bold;
-	margin-left:24%;
-}
+  #title {
+  	font-weight: bold;
+  	margin-left:24%;
+  }
 
-#send {
-	float: right;
-	margin-right: 15px;
-}
+  #send {
+  	float: right;
+  	margin-right: 15px;
+  }
+
+  #keyboard {
+  	position: fixed;
+  	bottom: 0px;
+  	left: 0px;
+  	background-color: #ccc;
+  	height: 300px;
+  	width: 100%;
+  	display: none;
+  }
