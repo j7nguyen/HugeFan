@@ -69,22 +69,27 @@ header {
 }
 
 #infoBar div {
-	display: inline-block;
+	display: block;
+	float: left;
 }
 
 #tips {
 	color: #C5C5C5;
+	width: 20%;
 }
 
 #title {
-	position: relative;
 	font-weight: bold;
-	left:11%;
+	text-align: center;
+	width: 60%;
+	margin-left: -2%;
+	margin-right: 2%;
 }
 
 #send {
-	float: right;
 	color: #4B8AEC;
+	text-align: right;
+	width: 20%;
 }
 
 #infoBox {
@@ -92,6 +97,7 @@ header {
 	border-top: thin solid #DCDBDD;
 	font-size: .9em;
 	color: #B9B9BC;
+	clear: both;
 }
 
 #infoBox > div {
