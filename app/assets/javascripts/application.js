@@ -89,7 +89,7 @@ function setUpTips() {
 	// show first hint if tips are enabled
 	if (APP.tipsEnabled) { 
 		$(APP.categoryID).attr('placeholder', 
-			'put category here (press tips to disable hints)');
+			'');
 	}
 		
 	// set up tick handler (toggles style and hint presence)
@@ -98,25 +98,28 @@ function setUpTips() {
 		APP.tipsEnabled = !APP.tipsEnabled;
 		
 		if (APP.tipsEnabled) {
-			$(APP.categoryID).attr('placeholder', 'put category here');
+			$(APP.categoryID).attr('placeholder', '');
 			
 			if ($(APP.categoryID).val() != '') {
-				$(APP.subjectID).attr('placeholder', 'put query here');
+				$(APP.subjectID).attr('placeholder', '');
 			}
 
 			if ($(APP.subjectID).val() != '') {
-				$(APP.resultsID).attr('placeholder', 'start typing here to see result');
+				$(APP.resultsID).attr('placeholder', '');
 			}
 
-			tipsButton.html("&nbsp;&nbsp;&nbsp;x");
+			tipsButton.html("Tips");
 			tipsButton.css({"color":"#9F9F9F","text-shadow":"none"});
-		} else {
 			$(APP.categoryID).attr('placeholder', '');
 			$(APP.subjectID).attr('placeholder', '');
 			$(APP.resultsID).attr('placeholder', '');
+		} else {
+			$(APP.categoryID).attr('placeholder', '(put category here)');
+			$(APP.subjectID).attr('placeholder', '(put query here)');
+			$(APP.resultsID).attr('placeholder', '(start typing here to see result)');
 
-			tipsButton.html("Tips");
-			tipsButton.css({"color":"#D5D5D5","text-shadow":"0 0 3px #fff"});
+			tipsButton.html("&nbsp;&nbsp;&nbsp;X");
+			tipsButton.css({"color":"#9E9E9E","text-shadow":"0 0 3px #fff"});
 		}
 
 	});
@@ -137,6 +140,26 @@ function setUpGreeting() {
 		$('#greeting').text('Good Afternoon');
 	}
 }
+
+
+
+$(document).ready(function(){
+  $( "#tips" ).animate({
+    opacity: 1
+  }, 500, function() {
+    // Animation complete.
+    $( "#tips" ).animate({
+    opacity: .2
+  }, 500, function() {
+    // Animation complete.
+    $( "#tips" ).animate({
+    opacity: 1
+  }, 500, function() {
+    // Animation complete.
+});
+});
+});
+});
 
 /*
  * sets up the autofill dropdown when the category box is pressed (To field)
@@ -225,7 +248,18 @@ function getResult() {
 
 	if (!category || query == '') {
 		$(APP.resultsID).attr('placeholder', 
-			'Please fill both to and subject fields, then click here.');
+			'Please fill both the to and subject fields out, then click here.');
+		setTimeout(function(){
+		$(APP.resultsID).animate({
+    opacity: 0
+  }, 700, function() {
+    // Animation complete.
+    $(APP.resultsID).attr('placeholder', 
+			'');
+    $(APP.resultsID).animate({
+    opacity: 1
+  }, 500);
+});},3000);
 	} else {
 
 		if (category === 'Movies') {
