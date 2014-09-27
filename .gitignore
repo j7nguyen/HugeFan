@@ -1,3 +1,5 @@
 *.keys
 log/
 *.log
+*.sublime-project
+*.sublime-workspace
