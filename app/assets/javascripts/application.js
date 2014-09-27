@@ -43,7 +43,7 @@ var APP = {
 	wordIndex: 0,
 
 	selectedCategory: null, // stores category selected
-	tipsEnabled: false,		// keeps track of whether or not tips are enabled
+	tipsEnabled: true,		// keeps track of whether or not tips are enabled
 
 	// DOM associations
 	resultsID: '#results',
@@ -179,10 +179,22 @@ function getResult() {
 	if (!category || query == '') {
 		$(APP.resultsID).attr('placeholder', 'Please fill both to and subject fields, then click here.');
 	} else {
-		// fill in ajax request here
-		var result = APP.tempFillerText	
-		APP.wordIndex = 0;
-		APP.resultWords = result.split(' ');	
+
+		if (category === 'Movies') {
+			var ajax = '/topics.json?topic='+category+'&query='+query;
+			console.log(ajax);
+			$.getJSON(ajax, null, function(data) {
+				var result = data.talking_points;
+				APP.wordIndex = 0;
+				APP.resultWords = result.split(' ');	
+			});
+		} else {
+			var result = APP.tempFillerText;
+			APP.wordIndex = 0;
+			APP.resultWords = result.split(' ');	
+		}
+
+
 	}
 }
 
