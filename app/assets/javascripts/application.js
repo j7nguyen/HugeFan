@@ -15,4 +15,6 @@
 //= require turbolinks
 //= require_tree .
 
-$("body").css({"display":"none"});
+$(document).ready(function(){
+
+})
