@@ -27,5 +27,9 @@ module Api
         def get_summary()
             return "bullshit for now"
         end
+    # private
+    #     def search(movie)
+    #         url = @@base_url % (@apiKey)
+    #     end
     end
 end
