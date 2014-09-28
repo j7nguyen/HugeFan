@@ -231,6 +231,8 @@ function displayMoreQuery(e) {
  * makes ajax request using user's query, messes around with hints as necessary
  */
 function getResult(incrementalDisplay) {
+	$(APP.resultsID).val('');
+
 	var category = APP.selectedCategory;
 	var query = $('#subject-input').val();
 
