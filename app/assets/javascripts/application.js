@@ -127,7 +127,7 @@ function setUpTips() {
 
 			if ($(APP.subjectID).val() != '') {
 				$(APP.resultsID).attr('placeholder', 
-					'start typing here to see result');
+					'(start typing here to see result)');
 			}
 
 			tipsButton.html("Tips");
@@ -244,8 +244,7 @@ function displayMoreQuery(e) {
  */
 function getResult() {
 	if (APP.tipsEnabled) $(APP.resultsID).attr('placeholder', 
-		'start typing here to see result');
-	$(APP.resultsID).val('');
+		'(start typing here to see result)');
 
 	var category = APP.selectedCategory;
 	var query = $('#subject-input').val();
