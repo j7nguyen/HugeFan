@@ -32,9 +32,6 @@ var APP = {
 			placeholderPrompt: "(put artist here)",
 		}
 	],
-
-	// temporary results before api is implemented
-	tempFillerText: "Hey John, \n\nBacon ipsum dolor sit amet short loin chicken pancetta, shankle cow salami brisket venison. Tongue chicken boudin meatloaf. Pork belly t-bone venison, corned beef short ribs tri-tip pork loin prosciutto bacon. Prosciutto cow porchetta ball tip, chuck leberkas frankfurter ground round salami shankle. \n\nBacon landjaeger meatball pancetta kevin pig venison leberkas beef ribs pork chop strip steak jerky tri-tip. Boudin corned beef filet mignon bresaola ground round bacon beef. Shankle beef drumstick strip steak, meatball shoulder tenderloin boudin kevin jowl turducken bacon venison. Shankle biltong cow pork loin, beef capicola beef ribs brisket pancetta salami. Jerky ham hock turkey cow pork chop, spare ribs t-bone landjaeger swine bacon short loin biltong kevin porchetta pastrami.\n\nTurducken salami shank shoulder pancetta spare ribs sausage jowl. Corned beef kevin t-bone ground round andouille sirloin. Pancetta capicola drumstick filet mignon prosciutto. Ham flank pork brisket kevin, tongue fatback sirloin beef leberkas hamburger short ribs.\n\nShoulder andouille pancetta, spare ribs landjaeger brisket meatball pork short ribs prosciutto strip steak filet mignon porchetta. Pork chop jerky pancetta short ribs jowl, hamburger pork pastrami landjaeger bresaola kevin beef. Tongue kevin meatloaf flank pork belly. Chicken porchetta sausage, prosciutto tenderloin filet mignon pancetta. Beef ribs biltong salami boudin, pig beef short ribs corned beef jowl ground round ham jerky sausage swine. Jerky tenderloin meatloaf corned beef chicken jowl.\n\nTri-tip hamburger drumstick porchetta beef ribs meatball ground round pork chop doner, pork belly salami. Shank turkey leberkas chicken venison pork loin ground round salami. Kielbasa flank ham hock, hamburger jerky ribeye leberkas pork loin venison jowl pork belly meatloaf brisket boudin tail. Short ribs pig frankfurter ribeye, pork belly drumstick ground round strip steak kevin tongue. Leberkas rump chuck frankfurter brisket beef ribs pork belly jowl shoulder flank meatloaf turducken pork. Kielbasa salami ham hock pork strip steak pork chop. Pancetta biltong tail pork belly short loin flank pork chop kevin sirloin fatback shoulder beef.\n\nDoes your lorem ipsum text long for something a little meatier? Give our generator a try… it’s tasty!",
 	
 	// will contain array of the words in the result
 	resultWords: [],
@@ -43,7 +40,7 @@ var APP = {
 	wordIndex: 0,
 
 	selectedCategory: null, // stores category selected
-	tipsEnabled: true,		// keeps track of whether or not tips are enabled
+	tipsEnabled: false,		// keeps track of whether or not tips are enabled
 
 	wikiEnable: true,
 
@@ -58,15 +55,15 @@ var APP = {
  * called when doc is ready
  */
 function main() {
+	$('#send').click(function() {
+		getResult(false);
+	});
+
 	setUpGreeting();
 	setUpCategoryAutofill();
 	setUpResultsBox();
 	setUpTips();
 	setUpSubjectBox();
-	$('#send').click(function() {
-		$(APP.resultsID).attr('placeholder', '(start typing here to see result)');
-		getResult();
-	});
 
 	$( "#tips" ).animate(
   		{ opacity: 1}, 
@@ -92,7 +89,7 @@ function main() {
  * as keys are entered, if tips are enabled a prompt appears in the body
  */
 function setUpSubjectBox() {
-	$(APP.subjectID).keypress(function() {
+	$(APP.subjectID).keydown(function() {
 		if (APP.tipsEnabled) {
 			$(APP.resultsID).attr('placeholder', 
 				'(start typing here to see result)');
@@ -119,23 +116,7 @@ function setUpTips() {
 		APP.tipsEnabled = !APP.tipsEnabled;
 		
 		if (APP.tipsEnabled) {
-			$(APP.categoryID).attr('placeholder', '');
-			
-			if ($(APP.categoryID).val() != '') {
-				$(APP.subjectID).attr('placeholder', '');
-			}
 
-			if ($(APP.subjectID).val() != '') {
-				$(APP.resultsID).attr('placeholder', 
-					'(start typing here to see result)');
-			}
-
-			tipsButton.html("Tips");
-			tipsButton.css({"color":"#9F9F9F","text-shadow":"none"});
-			$(APP.categoryID).attr('placeholder', '');
-			$(APP.subjectID).attr('placeholder', '');
-			$(APP.resultsID).attr('placeholder', '');
-		} else {
 			$(APP.categoryID).attr('placeholder', '(put category here)');
 			$(APP.subjectID).attr('placeholder', '(put query here)');
 			$(APP.resultsID).attr('placeholder', 
@@ -143,10 +124,18 @@ function setUpTips() {
 
 			tipsButton.html("&nbsp;&nbsp;&nbsp;X");
 			tipsButton.css({"color":"#9E9E9E","text-shadow":"0 0 3px #fff"});
+		} else {
+			tipsButton.html("Tips");
+			tipsButton.css({"color":"#9F9F9F","text-shadow":"none"});
+			$(APP.categoryID).attr('placeholder', '');
+			$(APP.subjectID).attr('placeholder', '');
+			$(APP.resultsID).attr('placeholder', '');
 		}
 
 	});
 }
+
+
 
 /*
  * sets up greeting which shows up in subject line
@@ -191,7 +180,7 @@ function setUpCategoryAutofill() {
 	categoryBox.hide();
 
 	// disable typing in keys in To: field (user's should use drop down)
-	$(APP.categoryID).keypress(function() {return false});
+	$(APP.categoryID).keydown(function() {return false});
 
 	// show category box on focus / unfocus
 	$(APP.categoryID).focus(function(){
@@ -220,12 +209,12 @@ function categorySelectionHandler(category) {
  * are pressed in the body
  */
 function setUpResultsBox() {
-	$(APP.resultsID).focus(getResult);
-	$(APP.resultsID).keypress(displayMoreQuery);
+	$(APP.resultsID).focus(function() { getResult(true) });
+	$(APP.resultsID).keydown(displayMoreQuery);
 }
 
 /*
- * called when keypress is made in the body field.
+ * called when keydown is made in the body field.
  * shows more results in the body
  */
 function displayMoreQuery(e) {
@@ -242,10 +231,8 @@ function displayMoreQuery(e) {
 /*
  * makes ajax request using user's query, messes around with hints as necessary
  */
-function getResult() {
-	if (APP.tipsEnabled) $(APP.resultsID).attr('placeholder', 
-		'(start typing here to see result)');
 
+function getResult(incrementalDisplay) {
 	var category = APP.selectedCategory;
 	var query = $('#subject-input').val();
 
@@ -259,8 +246,13 @@ function getResult() {
 		console.log(ajax);
 		$.getJSON(ajax, null, function(data) {
 			var result = data.talking_points;
-			APP.wordIndex = 0;
-			APP.resultWords = result.split(' ');	
+
+			if (incrementalDisplay) {
+				APP.wordIndex = 0;
+				APP.resultWords = result.split(' ');					
+			} else {
+				$(APP.resultsID).val(result);
+			}
 		});
 
 		if (APP.wikiEnable) { addWikipediaAdditions(query); }
