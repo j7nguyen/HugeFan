@@ -10,6 +10,7 @@ In your To: field, you choose movies or music (disguised as email addresses, of 
 Pulls from Rotten Tomatoes, Beats Music, and Wikipedia APIs. 
 
 Deployed on Heroku: <a href="http://imahugefan.herokuapp.com">http://imahugefan.herokuapp.com</a>
+
 <img width="33%" height="33%" src="https://github.com/vietjew/HugeFan/blob/master/app/assets/images/sample3.png">
 <img width="33%" height="33%" src="https://github.com/vietjew/HugeFan/blob/master/app/assets/images/sample2.png">
 <img width="33%" height="33%" src="https://github.com/vietjew/HugeFan/blob/master/app/assets/images/sample1.png">
