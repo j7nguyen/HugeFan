@@ -92,8 +92,14 @@ function main() {
 
 	var body = document.body, html = document.documentElement;
 	var totalHeight = Math.max( body.scrollHeight, body.offsetHeight, html.clientHeight, html.scrollHeight, html.offsetHeight );
-
-	$("#tipModal img").css({"width":window.innerWidth - 100, "height":"auto"});
+	if(window.innerWidth > window.innerHeight){
+		$("#tipModal img").css({"height":window.innerHeight - 100, "width":"auto"});
+		$("#tips").css({"padding-left":"5px", "width":"20%"});
+		$("#send").css({"padding-right":"5px", "width":"19%"});
+		$("#inboxHeader div:nth-child(1)").css({"padding-left":"1%", "width":"33%"});
+	} else {
+		$("#tipModal img").css({"width":window.innerWidth - 100, "height":"auto"});
+	}
 	$("#sendSummary").css({"height":window.innerHeight});
 	$("#tipModal").css({"height":totalHeight});
 	$("#title").click(function(){
