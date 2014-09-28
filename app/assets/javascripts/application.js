@@ -89,7 +89,7 @@ function main() {
  * as keys are entered, if tips are enabled a prompt appears in the body
  */
 function setUpSubjectBox() {
-	$(APP.subjectID).keypress(function() {
+	$(APP.subjectID).keydown(function() {
 		if (APP.tipsEnabled) {
 			$(APP.resultsID).attr('placeholder', 
 				'start typing here to see result');
@@ -179,7 +179,7 @@ function setUpCategoryAutofill() {
 	categoryBox.hide();
 
 	// disable typing in keys in To: field (user's should use drop down)
-	$(APP.categoryID).keypress(function() {return false});
+	$(APP.categoryID).keydown(function() {return false});
 
 	// show category box on focus / unfocus
 	$(APP.categoryID).focus(function(){
@@ -209,11 +209,11 @@ function categorySelectionHandler(category) {
  */
 function setUpResultsBox() {
 	$(APP.resultsID).focus(function() { getResult(true) });
-	$(APP.resultsID).keypress(displayMoreQuery);
+	$(APP.resultsID).keydown(displayMoreQuery);
 }
 
 /*
- * called when keypress is made in the body field.
+ * called when keydown is made in the body field.
  * shows more results in the body
  */
 function displayMoreQuery(e) {
