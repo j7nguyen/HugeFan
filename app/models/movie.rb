@@ -61,16 +61,29 @@ class Movie < ActiveRecord::Base
     end
   end
   
+  
   def talking_points
     if self.year.nil?
       tp_string = self.title
     else
-      tp_string = self.overall_opinion + "\n" + self.year_statement + "\n" +
-        self.actors_statement + "\n" + self.director_statement + 
-         (self.critics_concensus ? "\n\n" + self.critics_concensus : "" )
+      tp_string = "-#{self.overall_opinion}\n-#{self.year_statement}\n" +
+        "-#{self.actors_statement}\n-#{self.director_statement}" + 
+         (self.critics_concensus ? "\n-#{self.critics_concensus}" : '' )
     end
     
-    return { talking_points: tp_string}
+    return tp_string
+  end
+
+  def email_construction
+    greeting = ["Dear ", "Hey ", "Hi "].sample + %w(David John Melissa Julie Amanda Chris Danny Wendy Natasha 
+      William Diana Suresh Stephanie Joseph Rachel Robert Allen Bill Steve Natalie 
+      Natasha Priscilla Lisa Derek Raj Roger).sample + ","
+
+      message = ["I just wanted to check in really quick on a few things.",
+        "I was wondering if you could review something for me.",
+        "Sorry to bug you but I need your input on this."].sample
+
+    return {talking_points: greeting + "\n\n" + message + "\n\n" + self.talking_points + "\n\nThanks!"}
   end
   
 end
