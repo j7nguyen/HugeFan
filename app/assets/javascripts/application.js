@@ -26,8 +26,8 @@ var APP = {
 			placeholderPrompt: '(put movie here)',
 		},
 		{
-			email: 'xX_music_Xx@gmail.com', 
-			name: 'Music Guru',
+			email: 'musicfanatic99@gmail.com', 
+			name: 'Music Gurl',
 			category: 'Music',
 			placeholderPrompt: "(put artist here)",
 		}
