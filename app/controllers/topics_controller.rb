@@ -12,10 +12,10 @@ class TopicsController < ApplicationController
         @year = @info['year']
         @score = @info['ratings']['critics_score']
         @actor_one = @info['abridged_cast'][0]['name']
-        @character_one = (@info['abridged_cast'][0]['characters'][0] ? 
+        @character_one = (@info['abridged_cast'][0]['characters'] ? 
           @info['abridged_cast'][0]['characters'][0] : "The main character")
         @actor_two = @info['abridged_cast'][1]['name']
-        @character_two = (@info['abridged_cast'][1]['characters'][0] ?
+        @character_two = (@info['abridged_cast'][1]['characters'] ?
           @info['abridged_cast'][1]['characters'][0] : "The other character")
         @concensus = @info['critics_concensus']
         @director = @info['abridged_directors'][0]['name']
@@ -24,7 +24,7 @@ class TopicsController < ApplicationController
         actor_one: @actor_one, character_one: @character_one, 
         actor_two: @actor_two, character_two: @character_two,
         critics_concensus: @concensus, director: @director, genre: @genre)
-        @output = @movie.talking_points
+        @output = @movie.email_construction
       else
         @output = { talking_points: @info}
       end
@@ -41,7 +41,7 @@ class TopicsController < ApplicationController
         @artist = Artist.new( name: @info[0]['artist_display_name'],
         top_album: @info[0]['title'],
         favorite_track: @info[0]['refs']['tracks'].sample['display'])
-        @output = @artist.talking_points
+        @output = @artist.email_construction
       else
         @output = { talking_points: @info}
       end
