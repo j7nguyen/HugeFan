@@ -89,10 +89,17 @@ function main() {
  * as keys are entered, if tips are enabled a prompt appears in the body
  */
 function setUpSubjectBox() {
-	$(APP.subjectID).keydown(function() {
+	$(APP.subjectID).keydown(function(e) {
 		if (APP.tipsEnabled) {
 			$(APP.resultsID).attr('placeholder', 
 				'start typing here to see result');
+		}
+
+		var key = (e.keyCode ? e.keyCode : e.which);
+		if (key == 13) {
+			$(APP.resultsID).focus();
+			getResult(true);
+			return false;
 		}
 	});
 }
@@ -200,6 +207,7 @@ function categorySelectionHandler(category) {
 	}
 	$('#category-suggestion-container').hide();
 	APP.selectedCategory = category.category;
+	$(APP.subjectID).focus();
 }
 
 /*
