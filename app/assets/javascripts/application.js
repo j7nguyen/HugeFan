@@ -42,7 +42,7 @@ var APP = {
 	selectedCategory: null, // stores category selected
 	tipsEnabled: false,		// keeps track of whether or not tips are enabled
 
-	wikiEnable: true,
+	wikiEnable: false,
 
 	// DOM associations to input boxes
 	resultsID: '#results',
