@@ -14,7 +14,6 @@ module Api
     end
 
     def bullshit
-      return "This is a huge pile of bullshit"
     end
 
     def load_api_keys
@@ -39,7 +38,9 @@ module Api
     end
     
     def bullshit
-      "I really enjoyed the cinematography in that movie."
+      return ["I can see why you like that movie, it's a dark movie with lots of despair.",
+        "Oh yeah, that movie was awesome, with all the plot twists and the killer ending, I never saw any of that coming!",
+        "That was an amazing documentary, I never would have known about that stuff otherwise."].sample
     end
 
     private
@@ -68,6 +69,13 @@ module Api
     @@search_url = "https://partner.api.beatsmusic.com/v1/api/%s?client_id=%s%s" #endpoint, params, client_id
     @@info_url = "https://partner.api.beatsmusic.com/v1/api/artists/%s/%s?client_id=%s" #artist_id, endpoint, client_id
 
+    def bullshit
+      return [
+        "Yeah their style is completely transformative, too bad they died in that plane crash.",
+        "I'm a fan, I've been to every single concert in the Western Hemisphere.",
+        "Of course I know them, that's my crying music."].sample
+    end
+    
     def get_info
       artist_id = search(@topic)
       if artist_id

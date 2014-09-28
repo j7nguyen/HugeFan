@@ -39,7 +39,7 @@ class Movie < ActiveRecord::Base
     elsif self.score.to_i >60 && self.score.to_i < 90
       return "I thought #{self.actor_one} and #{self.actor_two} were good, though I probably would have preferred someone more dynamic."
     else
-      return "Not one of the bright spots on #{self.actor_one}'s resume, though I'm sure that greedy fuck is sleeping ok at night."
+      return "Not one of the bright spots on #{self.actor_one}'s resume, though I'm sure that greedy bastard is sleeping just fine at night."
     end
   end
   
