@@ -45,6 +45,8 @@ header {
 	width: 100%;
 	height: 20px;
 	padding-top:10px;
+	display: none;
+	visibility: ;
 }
 
 
@@ -59,12 +61,12 @@ header {
 
 #infoBar {
 	z-index: 2;
-	position: relative;
-	top: -10px;
+	position: absolute;
+	width: 97%;
+	top: 0px;
 	height: 2em;
 	padding: 3px 5px 0 5px;
 	line-height: 2em;
-	z-index: 9999999;
 	background-color: #F3F2F3;
 	border-bottom: 1px solid #bbb;
 	border-top: 1px solid #bbb;
@@ -104,19 +106,19 @@ header {
 }
 
 #infoBox > div {
-	padding:0 0 0 10px;
+	padding:0 0 0 0px;
 }
 
 #to, #ccBccFrom, #subject {
 	border-top: thin solid #DCDBDD;
 	/*border-bottom: 1px solid black;*/
-	padding: 5px 0;
+	padding: 5px 10px;
 	font-size: 1em;
 	color: #B9B9BC;
 }
 
 #to {
-	margin-top: 65px;
+	margin-top: 2.5em;
 	border-top: none;
 }
 
@@ -139,12 +141,12 @@ header {
 #category-suggestion-container {
 
 	position: absolute;
-	width: 93%;
-	top: 99px;
+	width: 100%;
+	top: 4.4em;
 	left: 0;
 	background-color: #fff;
 	border-top: 1px solid #ccc;
-	padding: 0px 10px;
+	padding: 0px 0px 100px 0;
 	margin: 0;
 
 
@@ -166,7 +168,7 @@ header {
 	list-style-type: none;
 	line-height: 20px;
 	border-bottom: 1px solid #ccc;
-	padding:10px 0;
+	padding:10px 11px;
 	height: 39px;
 
 }
@@ -211,4 +213,215 @@ header {
 
 ::-webkit-input-placeholder {
    color: #DCDCDC;
+}
+
+/* Below is the CSS for additional elements */
+
+
+#sendSummary {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 550px;
+	background-color:#fff;
+	z-index: 999;
+	display:none;
+}
+
+#sendSummary ul {
+	margin: 0;
+	padding: 0;
+}
+
+#sendSummary li {
+	list-style-type: none;
+	margin-left: 0;
+	padding-left: 0;
+}
+
+#inboxHeaderWrapper {
+	position: fixed;
+	top:0px;
+	background-color: #fff;
+	width: 100%;
+	z-index: 5;
+}
+
+#inboxHeader {
+	color: #000;
+	background-color: #D6F8F9;
+}
+
+#inboxHeader div {
+	float: left;
+	width: 32%;
+	padding: 7px 0;
+}
+
+#inboxHeader div:nth-child(1) {
+	text-align: left;
+	padding-left: 2%;
+	color: #4B8AEC;
+
+}
+
+#inboxHeader div:nth-child(2) {
+	text-align: center;
+	font-weight: bold;
+}
+
+#inboxHeader div:nth-child(3) {
+	text-align: right;
+	padding-right: 2%;
+	color: #4B8AEC;
+}
+
+#searchbox {
+	text-align: center;
+	background-color: #9AB2B3;
+	clear: both;
+	width: 100%;
+	margin-left: 1 auto;
+	padding: 4px 0;
+}
+
+#searchbox input {
+	width: 88%;
+	height: 1em;
+	border-radius: 5px;
+	outline: none;
+	border:thin solid #90A7A7;
+	text-align: center;
+	font-size: .9em;
+	line-height: 1.5em;
+	color: #000;
+	box-shadow: none;
+}
+
+#sendSummary #resultsSummary {
+	padding: 0 10px 0 30px;
+	position: relative;
+	top:75px;
+}
+
+.reviewResult {
+	border-bottom:1px solid #ccc;
+	padding: 5px 0;
+}
+
+.reviewResult li {
+	margin: 0;
+	line-height: .9em;
+}
+
+.reviewResult span {
+	font-size: .8em;
+	margin: 0;
+	color: #aaa;
+}
+
+.reviewResult h2 {
+	font-size: 1em;
+	color: #000;
+	margin: 0;
+	line-height: 1.1em;
+	display: inline-block;
+}
+
+.reviewResult h3 {
+	font-size: .8em;
+	color: #000;
+	margin: 0;
+	line-height: 1em;
+}
+
+
+.circle {
+	border-radius: 50%;
+	position: relative;
+	background-color: #4B8AEC;
+	width: 10px;
+	height: 10px;
+	top: -1px;
+	display: inline-block;
+	margin: -10px 5px 0 -17px;
+
+}
+
+#tipModal {
+	display: none;
+	position: absolute;
+	z-index: 0;
+	top:0;
+	left:0;
+	width: 100%;
+	background-color: rgba(0,0,0,.8);
+}
+
+#tipModal img {
+	height: 100%;
+	width: auto;
+	margin: 20px auto 0 auto;
+	display: block;
+	box-shadow: 0 0 20px #000;
+	display: none;
+
+}
+
+#previous, #next {
+	position: relative;
+	top:0;
+	color: #888;
+	font-family: Tahoma;
+	text-shadow: 0 0 3px #000;
+	padding: 200px 15px;
+}
+
+#previous {
+	float:left;
+
+}
+
+#next {
+	float:right;
+}
+
+#imgTOC {
+	margin: 0 auto;
+	clear: both;
+	width: 110px;
+}
+#imgTOC span {
+	border-radius: 50%;
+	border:thin solid #ededed;
+	width: 5px;
+	height: 5px;
+	display: inline-block;
+}
+
+.activeimgTOC {
+	background-color: #ededed;
+}
+
+#tipModal .activeIMG {
+	display: block;
+}
+
+#closeTips {
+	position: absolute;
+	z-index: 99999999;
+	width: 1.2em;
+	height: 1.2em;
+	line-height: 1.2em;
+	font-size: .9em;
+	top: 10px;
+	right: 15px;
+	float: right;
+	border-radius: 50px;
+	text-align: center;
+	border: 1px solid #fff;
+	color: #fff;
+	display: block;
+
 }

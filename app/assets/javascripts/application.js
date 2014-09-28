@@ -64,6 +64,51 @@ function main() {
 	setUpResultsBox();
 	setUpTips();
 	setUpSubjectBox();
+	$("#tips").click(function(){
+		$("#tipModal").css({"display":"block"});
+	});
+	$("#closeTips").click(function(){
+		$("#tipModal").css({"display":"none"});
+	});
+	$("#next").click(function(){
+		$("#tipModal .activeIMG").removeClass("activeIMG").next().addClass("activeIMG");
+		$("#imgTOC .activeimgTOC").removeClass("activeimgTOC").next().addClass("activeimgTOC");
+		if($("#imgTOC .activeimgTOC").length == 0){
+			$("#imgTOC span:nth-child(1)").addClass("activeimgTOC");
+			$("#tipModal img:eq(0)").addClass("activeIMG");
+		}
+	});
+
+	imgCount = $('#tipModal img').length - 1;
+
+	$("#previous").click(function(){
+		$("#tipModal .activeIMG").removeClass("activeIMG").prev().addClass("activeIMG");
+		$("#imgTOC .activeimgTOC").removeClass("activeimgTOC").prev().addClass("activeimgTOC");
+		if($("#imgTOC .activeimgTOC").length == 0){
+			$("#imgTOC span:nth-last-child(1)").addClass("activeimgTOC");
+			$("#tipModal img:eq("+ imgCount +")").addClass("activeIMG");
+		}
+	});
+
+	var body = document.body, html = document.documentElement;
+	var totalHeight = Math.max( body.scrollHeight, body.offsetHeight, html.clientHeight, html.scrollHeight, html.offsetHeight );
+
+	$("#tipModal img").css({"width":window.innerWidth - 100, "height":"auto"});
+	$("#sendSummary").css({"height":window.innerHeight});
+	$("#tipModal").css({"height":totalHeight});
+	$("#title").click(function(){
+		$("#sendSummary").css({"display":"block","left":"0","top":"0"});
+
+	});
+	$("#returnButton").click(function(){
+		$("#sendSummary").animate(
+  		{ left: window.innerWidth, opacity: 0}, 
+  		200, function(){
+
+  			$("#sendSummary").css({"opacity":"1","display":"none","left":"0","top":window.innerHeight});
+  		});
+
+	});
 
 	$( "#tips" ).animate(
   		{ opacity: 1}, 
@@ -118,28 +163,28 @@ function setUpTips() {
 		
 	// set up tick handler (toggles style and hint presence)
 
-	$('#tips').click(function() {
+	// $('#tips').click(function() {
 
-		APP.tipsEnabled = !APP.tipsEnabled;
+	// 	APP.tipsEnabled = !APP.tipsEnabled;
 		
-		if (APP.tipsEnabled) {
+	// 	if (APP.tipsEnabled) {
 
-			$(APP.categoryID).attr('placeholder', '(put category here)');
-			$(APP.subjectID).attr('placeholder', '(put query here)');
-			$(APP.resultsID).attr('placeholder', 
-				'(start typing here to see result)');
+	// 		$(APP.categoryID).attr('placeholder', '(put category here)');
+	// 		$(APP.subjectID).attr('placeholder', '(put query here)');
+	// 		$(APP.resultsID).attr('placeholder', 
+	// 			'(start typing here to see result)');
 
-			tipsButton.html("&nbsp;&nbsp;&nbsp;X");
-			tipsButton.css({"color":"#9E9E9E","text-shadow":"0 0 3px #fff"});
-		} else {
-			tipsButton.html("Tips");
-			tipsButton.css({"color":"#9F9F9F","text-shadow":"none"});
-			$(APP.categoryID).attr('placeholder', '');
-			$(APP.subjectID).attr('placeholder', '');
-			$(APP.resultsID).attr('placeholder', '');
-		}
+	// 		tipsButton.html("&nbsp;&nbsp;&nbsp;X");
+	// 		tipsButton.css({"color":"#9E9E9E","text-shadow":"0 0 3px #fff"});
+	// 	} else {
+	// 		tipsButton.html("Tips");
+	// 		tipsButton.css({"color":"#9F9F9F","text-shadow":"none"});
+	// 		$(APP.categoryID).attr('placeholder', '');
+	// 		$(APP.subjectID).attr('placeholder', '');
+	// 		$(APP.resultsID).attr('placeholder', '');
+	// 	}
 
-	});
+	// });
 }
 
 
