@@ -24,15 +24,13 @@ class TopicsController < ApplicationController
         actor_one: @actor_one, character_one: @character_one, 
         actor_two: @actor_two, character_two: @character_two,
         critics_concensus: @concensus, director: @director, genre: @genre)
+        @output = @movie.talking_points
       else
-        @movie = Movie.new( title: "We couldn't find a movie with a title like that",
-        score: "", actor_one: "", character_one: "", actor_two: "", character_two:"",
-        critics_concensus: "", director: "", genre: "")
+        @output = { talking_points: @info}
       end
-      
       respond_to do |format|
         format.html
-        format.json { render json: @movie.talking_points }
+        format.json { render json: @output }
       end
       
     elsif params[:topic] == "Music"
@@ -43,13 +41,14 @@ class TopicsController < ApplicationController
         @artist = Artist.new( name: @info[0]['artist_display_name'],
         top_album: @info[0]['title'],
         favorite_track: @info[0]['refs']['tracks'].sample['display'])
+        @output = @artist.talking_points
       else
-        @artist = Artist.new( name: "No artist found.")
+        @output = { talking_points: @info}
       end
       
       respond_to do |format|
         format.html
-        format.json { render json: @artist.talking_points }
+        format.json { render json: @output }
       end
     end
 

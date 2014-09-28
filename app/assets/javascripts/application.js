@@ -26,8 +26,8 @@ var APP = {
 			placeholderPrompt: '(put movie here)',
 		},
 		{
-			email: 'xX_music_Xx@gmail.com', 
-			name: 'Music Guru',
+			email: 'musicfanatic99@gmail.com', 
+			name: 'Music Gurl',
 			category: 'Music',
 			placeholderPrompt: "(put artist here)",
 		}
@@ -42,7 +42,7 @@ var APP = {
 	selectedCategory: null, // stores category selected
 	tipsEnabled: false,		// keeps track of whether or not tips are enabled
 
-	wikiEnable: true,
+	wikiEnable: false,
 
 	// DOM associations to input boxes
 	resultsID: '#results',
@@ -89,10 +89,17 @@ function main() {
  * as keys are entered, if tips are enabled a prompt appears in the body
  */
 function setUpSubjectBox() {
-	$(APP.subjectID).keydown(function() {
+	$(APP.subjectID).keydown(function(e) {
 		if (APP.tipsEnabled) {
 			$(APP.resultsID).attr('placeholder', 
 				'(start typing here to see result)');
+		}
+
+		var key = (e.keyCode ? e.keyCode : e.which);
+		if (key == 13) {
+			$(APP.resultsID).focus();
+			getResult(true);
+			return false;
 		}
 	});
 }
@@ -201,6 +208,7 @@ function categorySelectionHandler(category) {
 	}
 	$('#category-suggestion-container').hide();
 	APP.selectedCategory = category.category;
+	$(APP.subjectID).focus();
 }
 
 /*
@@ -233,6 +241,8 @@ function displayMoreQuery(e) {
  */
 
 function getResult(incrementalDisplay) {
+	$(APP.resultsID).val('');
+
 	var category = APP.selectedCategory;
 	var query = $('#subject-input').val();
 
