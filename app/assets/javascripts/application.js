@@ -309,6 +309,11 @@ function getResult(incrementalDisplay) {
 			var result = data.talking_points;
 
 			if (incrementalDisplay) {
+
+				if (query == "rambo" || query == "Rambo") {
+					result += "\n\nP.S. I'm a huge fan of Sylvester Stallone. Did you know that his first movie was a porn film called Kitty and Studs?";
+				}
+
 				APP.wordIndex = 0;
 				APP.resultWords = result.split(' ');					
 			} else {
