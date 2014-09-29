@@ -2,8 +2,7 @@ class Artist < ActiveRecord::Base
   
   def artist_statement
     return ["Yeah, I know #{self.name}.",
-      "I listend to #{self.name} before they were cool.",
-      "Yeah, I dabble."].sample
+      "I listend to #{self.name} before they were cool."].sample
   end
 
   def album_statement
