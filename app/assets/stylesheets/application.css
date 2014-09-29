@@ -142,7 +142,7 @@ header {
 
 	position: absolute;
 	width: 100%;
-	top: 4.4em;
+	top: 2.5em;
 	left: 0;
 	background-color: #fff;
 	border-top: 1px solid #ccc;
@@ -201,7 +201,7 @@ header {
 	width: 93%;
 	border-radius: 0px;
 	overflow: visible;
-	padding: 10px 1px;
+	padding: 10px 11px;
 	font-size: .9em;
 	border:none;
 	box-shadow: none;

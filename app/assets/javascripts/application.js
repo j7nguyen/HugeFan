@@ -90,6 +90,8 @@ function main() {
 		}
 	});
 
+	$("#body textarea").css({"height":window.innerHeight - ($("#body textarea").offset().top + 20)});
+
 	var body = document.body, html = document.documentElement;
 	var totalHeight = Math.max( body.scrollHeight, body.offsetHeight, html.clientHeight, html.scrollHeight, html.offsetHeight );
 	if(window.innerWidth > window.innerHeight){
