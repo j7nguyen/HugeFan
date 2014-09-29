@@ -312,7 +312,7 @@ function getResult(incrementalDisplay) {
 
 			if (incrementalDisplay) {
 
-				if (query == "rambo" || query == "Rambo") {
+				if (query == "rambo first" || query == "Rambo First") {
 					result += "\n\nP.S. I'm a huge fan of Sylvester Stallone. Did you know that his first movie was a porn film called Kitty and Studs?";
 				}
 
