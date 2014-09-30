@@ -1,7 +1,7 @@
 HugeFan
 =======
 
-Entry for <a href="http://www.comedyhackday.org">Comedy Hack Day SF 2014.</a> 
+Entry for <a href="http://www.comedyhackday.org">Comedy Hack Day SF 2014.</a> Winner of sponsor prize "Wackiest Use of <a href="http://www.mashery.com">Intel Mashery</a> Technology."
 
 Deployed on Heroku: <a href="http://imahugefan.herokuapp.com">http://imahugefan.herokuapp.com</a>
 
